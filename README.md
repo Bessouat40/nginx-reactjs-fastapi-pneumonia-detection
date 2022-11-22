@@ -16,7 +16,7 @@ Se placer dans le répertoire du projet
 
 ### Lancement de la partie backend
 
-* `cd ../back`
+* `cd back`
 
 * `pip install -r requirements.txt`
 
