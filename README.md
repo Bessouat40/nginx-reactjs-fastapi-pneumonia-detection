@@ -22,6 +22,12 @@ Se placer dans le répertoire du projet
 
 * `python main.py`
 
+## Lancement du logiciel avec Docker
+
+* `docker-compose build && docker-compose up`
+
+Ensuite rendez vous à cette url pour visualiser le logiciel : `http://localhost:3000/`
+
 
 ## Visuel de l'application
 
