@@ -21,3 +21,12 @@ Se placer dans le répertoire du projet
 * `pip install -r requirements.txt`
 
 * `python main.py`
+
+
+## Visuel de l'application
+
+![screenshot1](https://github.com/Bessouat40/ Logiciel-d-aide-au-diagnostic/blob/main/accueil.png?raw=true)
+
+![screenshot2](https://github.com/Bessouat40/ Logiciel-d-aide-au-diagnostic/blob/main/pred_simple_image.png?raw=true)
+
+![screenshot3](https://github.com/Bessouat40/ Logiciel-d-aide-au-diagnostic/blob/main/batch.png?raw=true)
