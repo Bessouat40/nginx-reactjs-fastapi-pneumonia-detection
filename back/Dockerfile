@@ -1,4 +1,4 @@
-FROM python:3.7
+FROM tensorflow/tensorflow
 
 COPY requirements.txt .
 
@@ -8,4 +8,4 @@ COPY /. .
 
 EXPOSE 8000
 
-CMD ["python3.7", "main.py"]
+CMD ["python", "main.py"]
