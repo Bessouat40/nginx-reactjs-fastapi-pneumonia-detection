@@ -1,4 +1,4 @@
-#Logiciel d'aide au diagnostic d'une pneumonie
+# Logiciel d'aide au diagnostic d'une pneumonie
 
 ## Lancement du logiciel (sans docker)
 
