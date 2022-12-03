@@ -10,7 +10,7 @@ import Link from '@mui/material/Link';
 
 const TitleComponent = () => {
   return (
-    <Stack spacing={1.5} alignItems='center'>
+    <Stack spacing={1.5} alignItems='center' >
     <AppBar position="relative" color="inherit">
       <Stack 
       justifyContent="center"
