@@ -4,7 +4,7 @@ import Tab from '@mui/material/Tab';
 import Grid from '@mui/material/Grid';
 import UploadImg from './image';
 import UploadMultipleImage from './multipleImages';
-import TitleComponent from './titre';
+import TitleComponent from './home';
 
 const FunctionalityChoice = () => {
   const [value, setValue] = React.useState(0);
