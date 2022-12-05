@@ -53,6 +53,7 @@ const UploadImgs = () => {
     }
   };
 
+  
   const onDelete = () => {
     setPredict();
     setPreview();
