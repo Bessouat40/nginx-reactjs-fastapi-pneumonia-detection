@@ -22,6 +22,21 @@ class Inference():
         x = x.reshape((1,150*150))
         self.image = x
 
+    def load_multiple_img(self, bytes) :
+        liste = []
+        for i in bytes :
+            image = BytesIO(i)
+            pil_image = Image.open(image).convert('L') 
+            img = np.array(pil_image)
+            img_shape = (150,150,1)
+            img_width, img_height, nb_canaux = img_shape[0], img_shape[1], img_shape[2]
+            img = np.array([np.resize(img,(img_width, img_height))])
+            liste.append(img)
+        x = np.asarray(img)
+        x = np.array(np.concatenate(x))
+        x = x.reshape((len(image),150*150))
+        self.image = x
+
     def predict_image(self):
         return self.model.predict(self.image)
 
