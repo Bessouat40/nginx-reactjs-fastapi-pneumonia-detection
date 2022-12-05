@@ -3,7 +3,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Grid from '@mui/material/Grid';
 import UploadImg from './image';
-import UploadMultipleImage from './multipleImages';
+import UploadImgs from './multipleImages';
 import TitleComponent from './home';
 
 const FunctionalityChoice = () => {
@@ -28,7 +28,7 @@ const FunctionalityChoice = () => {
       <Grid item>
         {value===0 && (<TitleComponent/>)}
         {value===1 && (<UploadImg/>)}
-        {value===2 && (<UploadMultipleImage/>)}
+        {value===2 && (<UploadImgs/>)}
       </Grid>
     </Grid>
     );

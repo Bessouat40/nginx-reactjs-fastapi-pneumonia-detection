@@ -17,6 +17,7 @@ const UploadImg = () => {
   useEffect(() => {}, [preview]);
 
   const onUpload = (event) => {
+    console.log(event.target.files)
     setSelected(event.target.files[0]);
     setPreview(URL.createObjectURL(event.target.files[0]));
     setPredict();
@@ -28,7 +29,7 @@ const UploadImg = () => {
     } else {
       const formData = new FormData();
       formData.append("image", selected);
-      const resp = await fetch("http://localhost:8000/prediction_single_pneumonie", {
+      const resp = await fetch("http://localhost:8000/prediction_single_pneumonia", {
         body: formData,
         method: "POST",
       });

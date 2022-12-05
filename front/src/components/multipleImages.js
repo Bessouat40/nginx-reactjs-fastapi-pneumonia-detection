@@ -3,26 +3,38 @@ import Button from "@mui/material/Button";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { Stack } from "@mui/system";
 import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem"
+import ImageListItemBar from "@mui/material/ImageListItemBar";
 
 import FormData from "form-data";
 
 const UploadImgs = () => {
   const [selected, setSelected] = useState();
+  const [images, setImages] = useState();
   const [preview, setPreview] = useState();
   const [predict, setPredict] = useState();
+  const [filenames, setFilenames] = useState();
 
   useEffect(() => {}, [preview]);
 
   const onUpload = (event) => {
-    const listeRadios = [];
-    console.log('event : ', event.target.files)
-    Array.from(event.target.files).forEach((file, idx) => {
-      listeRadios.push({img : file.name, title: idx.toString()});
-    });
-    setSelected(listeRadios)
-    console.log("radios : ", listeRadios)
+    const reception = [];
+    const radios = [];
+    const listeFilenames = [];
+    const listeImages = [];
+    const data = [];
+    reception.push(event.target.files);
+    for (let i = 0; i < reception[0].length; i++) {
+        radios.push({img: URL.createObjectURL(reception[0][i]), filename: i})
+        listeFilenames.push(reception[0][i].name.split('.').shift())
+        listeImages.push(URL.createObjectURL(reception[0][i]))
+    }
+    setFilenames(listeFilenames)
+    setSelected(radios)
+    setImages(listeImages)
     setPredict();
   };
 
@@ -31,8 +43,8 @@ const UploadImgs = () => {
       alert("Veuillez uploader une image pour lancer la prédiction");
     } else {
       const formData = new FormData();
-      formData.append("image", selected);
-      const resp = await fetch("http://localhost:8000/prediction_single_pneumonie", {
+      formData.append('files', images)
+      const resp = await fetch("http://localhost:8000/prediction_multiple_pneumonia", {
         body: formData,
         method: "POST",
       });
@@ -44,7 +56,9 @@ const UploadImgs = () => {
   const onDelete = () => {
     setPredict();
     setPreview();
+    setImages();
     setSelected();
+    setFilenames();
   };
 
   return (
@@ -57,26 +71,31 @@ const UploadImgs = () => {
           endIcon={<FileUploadIcon />}
           variant="contained"
         >
-          Upload images
+          Upload image
           <input hidden type="file" onChange={onUpload} multiple />
         </Button>
+
+        <Stack direction="row" spacing={2}>
+          <Button variant="contained" onClick={onPredict}>
+            Predict
+          </Button>
+          <IconButton aria-label="delete" onClick={onDelete}>
+            <DeleteIcon />
+          </IconButton>
+        </Stack>
       </Stack>
       {selected ? (
-            <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
-              {selected.forEach((item) => (
-                <ImageListItem>
-                  <img
-                    src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
-                    srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                    alt={item.title}
-                    loading="lazy"
-                  />
-                </ImageListItem>
-              ))}
-            </ImageList>
-      ) : (
+        <ImageList cols={5}>
+        {(selected || []).map((url, idx) => (
+        <ImageListItem key={url.filename}>
+        <img src={url.img} alt={url.filename} style={{ width: 250, height: 250}} />
+        <ImageListItemBar title={filenames[idx]} />
+        </ImageListItem>
+        ))}
+        </ImageList>
+        ) : (
         <Typography variant="h5">Sélectionnez une image</Typography>
-      )}
+        )}
       {predict ? <Typography variant="h5">{predict}</Typography> : <div></div>}
     </Stack>
   );
