@@ -9,6 +9,8 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem"
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 
+import _ from 'lodash'
+
 import FormData from "form-data";
 
 const UploadImgs = () => {
@@ -21,21 +23,17 @@ const UploadImgs = () => {
   useEffect(() => {}, [preview]);
 
   const onUpload = (event) => {
+    setPredict();
     const reception = [];
     const radios = [];
-    const listeFilenames = [];
     const listeImages = [];
-    const data = [];
     reception.push(event.target.files);
     for (let i = 0; i < reception[0].length; i++) {
-        radios.push({img: URL.createObjectURL(reception[0][i]), filename: i})
-        listeFilenames.push(reception[0][i].name.split('.').shift())
-        listeImages.push(URL.createObjectURL(reception[0][i]))
+        radios.push({img: URL.createObjectURL(reception[0][i]), filename: reception[0][i].name.split('.').shift()})
+        listeImages.push(reception[0][i])
     }
-    setFilenames(listeFilenames)
     setSelected(radios)
-    setImages(listeImages)
-    setPredict();
+    setImages(listeImages);
   };
 
   const onPredict = async () => {
@@ -43,7 +41,7 @@ const UploadImgs = () => {
       alert("Veuillez uploader une image pour lancer la prédiction");
     } else {
       const formData = new FormData();
-      formData.append('files', images)
+      formData.append('images', images)
       const resp = await fetch("http://localhost:8000/prediction_multiple_pneumonia", {
         body: formData,
         method: "POST",
@@ -53,13 +51,11 @@ const UploadImgs = () => {
     }
   };
 
-  
+
   const onDelete = () => {
     setPredict();
     setPreview();
-    setImages();
     setSelected();
-    setFilenames();
   };
 
   return (
@@ -90,7 +86,7 @@ const UploadImgs = () => {
         {(selected || []).map((url, idx) => (
         <ImageListItem key={url.filename}>
         <img src={url.img} alt={url.filename} style={{ width: 250, height: 250}} />
-        <ImageListItemBar title={filenames[idx]} />
+        <ImageListItemBar title={url.filename} />
         </ImageListItem>
         ))}
         </ImageList>

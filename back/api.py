@@ -19,11 +19,11 @@ app.add_middleware(
     allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"]
+    allow_headers=["*"],
 )
 
 @app.post('/prediction_multiple_pneumonia')
-async def detect_pneumonia(files: List[UploadFile] = File(...)):
+async def detect_pneumonia(files: List[UploadFile]):
     print('coucou')
     image_bytes = files.file.read()
     inf.load_single_img(image_bytes)

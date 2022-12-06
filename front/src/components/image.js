@@ -17,7 +17,6 @@ const UploadImg = () => {
   useEffect(() => {}, [preview]);
 
   const onUpload = (event) => {
-    console.log(event.target.files)
     setSelected(event.target.files[0]);
     setPreview(URL.createObjectURL(event.target.files[0]));
     setPredict();
@@ -70,7 +69,7 @@ const UploadImg = () => {
       {selected ? (
         <img
           src={preview}
-          style={{ width: 325, height: 350 }}
+          style={{ width: 350, height: 350 }}
           alt="img to predict"
         />
       ) : (
