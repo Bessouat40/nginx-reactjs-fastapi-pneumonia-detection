@@ -19,7 +19,8 @@ const FunctionalityChoice = () => {
         direction='column'
         spacing={3}>
     <Grid item>
-      <Tabs value={value} onChange={handleChange} centered >
+      <Tabs value={value} onChange={handleChange} centered TabIndicatorProps={{
+  sx: { backgroundColor: "#514d4c" }}} indicatorColor="#514d4c" textColor="#514d4c">
         <Tab label="Accueil" />
         <Tab label="Prédiction sur une simple image" />
         <Tab label="Prédiction sur un dossier d'images" />
