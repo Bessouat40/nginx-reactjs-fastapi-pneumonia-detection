@@ -88,7 +88,7 @@ const UploadImgs = () => {
     <Stack spacing={5} alignItems="center">
       <Stack spacing={30} direction="row" alignItems="center">
         <Button
-          color="primary"
+          style={{backgroundColor:"#514d4c"}}
           aria-label="upload-picture"
           component="label"
           endIcon={<FileUploadIcon />}
@@ -99,7 +99,7 @@ const UploadImgs = () => {
         </Button>
 
         <Stack direction="row" spacing={2}>
-          <Button variant="contained" onClick={onPredict}>
+          <Button variant="contained" style={{backgroundColor:"#514d4c"}} onClick={onPredict}>
             Predict
           </Button>
           <IconButton aria-label="delete" onClick={onDelete}>
