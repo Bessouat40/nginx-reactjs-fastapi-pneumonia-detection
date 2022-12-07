@@ -35,4 +35,4 @@ Ensuite rendez vous à cette url pour visualiser le logiciel : `http://localhost
 
 ![screenshot2](https://github.com/Bessouat40/Logiciel-d-aide-au-diagnostic/blob/main/screen/pred_simple_image.png?raw=true)
 
-![screenshot3](https://github.com/Bessouat40/Logiciel-d-aide-au-diagnostic/blob/main/screen/batch.png?raw=true)
+![screenshot3](https://github.com/Bessouat40/Logiciel-d-aide-au-diagnostic/blob/main/screen/multiple_predictions.png?raw=true)
