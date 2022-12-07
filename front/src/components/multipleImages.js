@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
+import { styled } from "@mui/system";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { Stack } from "@mui/system";
 import Typography from "@mui/material/Typography";
@@ -8,8 +9,13 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem"
 import ImageListItemBar from "@mui/material/ImageListItemBar";
-
-import _ from 'lodash'
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, {tableCellClasses} from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 import FormData from "form-data";
 
@@ -18,9 +24,19 @@ const UploadImgs = () => {
   const [images, setImages] = useState();
   const [preview, setPreview] = useState();
   const [predict, setPredict] = useState();
-  const [filenames, setFilenames] = useState();
+  const [rows, setRows] = useState();
 
   useEffect(() => {}, [preview]);
+
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: "#514d4c",
+      color: "white",
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
 
   const onUpload = (event) => {
     setPredict();
@@ -36,17 +52,27 @@ const UploadImgs = () => {
     setImages(listeImages);
   };
 
+  const createData = (filename, pred) => {
+    return {filename, pred};
+  }
+
   const onPredict = async () => {
     if (!selected) {
       alert("Veuillez uploader une image pour lancer la prédiction");
     } else {
       const formData = new FormData();
-      formData.append('images', images)
+      images.forEach((image) => formData.append("images", image));
       const resp = await fetch("http://localhost:8000/prediction_multiple_pneumonia", {
         body: formData,
         method: "POST",
       });
       const data = await resp.json();
+      const row = []
+      data.forEach((d, idx) => {
+        row.push(createData(selected[idx]['filename'], d))
+      })      
+      setRows(row)
+      console.log(row)
       setPredict(data);
     }
   };
@@ -85,7 +111,7 @@ const UploadImgs = () => {
         <ImageList cols={5}>
         {(selected || []).map((url, idx) => (
         <ImageListItem key={url.filename}>
-        <img src={url.img} alt={url.filename} style={{ width: 250, height: 250}} />
+        <img src={url.img} alt={url.filename} style={{ width: 200, height: 200}} />
         <ImageListItemBar title={url.filename} />
         </ImageListItem>
         ))}
@@ -93,7 +119,29 @@ const UploadImgs = () => {
         ) : (
         <Typography variant="h5">Sélectionnez une image</Typography>
         )}
-      {predict ? <Typography variant="h5">{predict}</Typography> : <div></div>}
+      {predict ? <Stack><TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <TableHead>
+          <TableRow>
+            <StyledTableCell>Filenames</StyledTableCell>
+            <StyledTableCell align="right">Predictions</StyledTableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow
+              key={row.filename}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                {row.filename}
+              </TableCell>
+              <TableCell align="right">{row.pred}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer></Stack> : <div></div>}
     </Stack>
   );
 };
