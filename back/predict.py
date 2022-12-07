@@ -32,9 +32,9 @@ class Inference():
             img_width, img_height, nb_canaux = img_shape[0], img_shape[1], img_shape[2]
             img = np.array([np.resize(img,(img_width, img_height))])
             liste.append(img)
-        x = np.asarray(img)
+        x = np.asarray(liste)
         x = np.array(np.concatenate(x))
-        x = x.reshape((len(image),150*150))
+        x = x.reshape(len(bytes),150*150)
         self.image = x
 
     def predict_image(self):
