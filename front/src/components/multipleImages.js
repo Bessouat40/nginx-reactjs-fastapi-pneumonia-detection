@@ -16,6 +16,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { CSVLink, CSVDownload } from "react-csv";
+import DownloadIcon from '@mui/icons-material/Download';
 
 import FormData from "form-data";
 
@@ -25,6 +27,7 @@ const UploadImgs = () => {
   const [preview, setPreview] = useState();
   const [predict, setPredict] = useState();
   const [rows, setRows] = useState();
+  const [csvData, setData] = useState();
 
   useEffect(() => {}, [preview]);
 
@@ -67,11 +70,14 @@ const UploadImgs = () => {
         method: "POST",
       });
       const data = await resp.json();
-      const row = []
+      const row = [];
+      const csv_datas = [["Filenames", "Predictions"]];
       data.forEach((d, idx) => {
         row.push(createData(selected[idx]['filename'], d))
+        csv_datas.push([selected[idx]['filename'], d])
       })      
       setRows(row)
+      setData(csv_datas)
       console.log(row)
       setPredict(data);
     }
@@ -103,7 +109,7 @@ const UploadImgs = () => {
             Predict
           </Button>
           <IconButton aria-label="delete" onClick={onDelete}>
-            <DeleteIcon />
+            <DeleteIcon/>
           </IconButton>
         </Stack>
       </Stack>
@@ -119,7 +125,7 @@ const UploadImgs = () => {
         ) : (
         <Typography variant="h5">Sélectionnez une image</Typography>
         )}
-      {predict ? <Stack><TableContainer component={Paper}>
+      {predict ? <Stack direction='row' spacing={2}><TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
       <TableHead>
           <TableRow>
@@ -141,7 +147,13 @@ const UploadImgs = () => {
           ))}
         </TableBody>
       </Table>
-    </TableContainer></Stack> : <div></div>}
+    </TableContainer>
+    <CSVLink data={csvData} filename={"predictions.csv"}>
+    <IconButton>
+    <DownloadIcon/>
+    </IconButton>
+    </CSVLink>
+    </Stack> : <div></div>}
     </Stack>
   );
 };
