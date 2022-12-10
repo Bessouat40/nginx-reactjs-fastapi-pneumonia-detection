@@ -95,17 +95,6 @@ const UploadImgs = () => {
   return (
     <Stack spacing={5} alignItems="center">
       <Stack spacing={30} direction="row" alignItems="center">
-        <Button
-          style={{backgroundColor:"#514d4c"}}
-          aria-label="upload-picture"
-          component="label"
-          endIcon={<FileUploadIcon />}
-          variant="contained"
-        >
-          Upload image
-          <input hidden type="file" onChange={onUpload} multiple />
-        </Button>
-
         <Stack direction="row" spacing={2}>
           <Button variant="contained" style={{backgroundColor:"#514d4c"}} onClick={onPredict}>
             Predict
