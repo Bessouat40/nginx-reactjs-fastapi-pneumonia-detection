@@ -2,7 +2,6 @@ import * as React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Grid from '@mui/material/Grid';
-import UploadImg from './image';
 import UploadImgs from './multipleImages';
 import TitleComponent from './home';
 
@@ -22,14 +21,12 @@ const FunctionalityChoice = () => {
       <Tabs value={value} onChange={handleChange} centered TabIndicatorProps={{
   sx: { backgroundColor: "#514d4c" }}} indicatorColor="#514d4c" textColor="#514d4c">
         <Tab label="Accueil" />
-        <Tab label="Prédiction sur une simple image" />
         <Tab label="Prédiction sur un dossier d'images" />
       </Tabs>
     </Grid>
       <Grid item>
         {value===0 && (<TitleComponent/>)}
-        {value===1 && (<UploadImg/>)}
-        {value===2 && (<UploadImgs/>)}
+        {value===1 && (<UploadImgs/>)}
       </Grid>
     </Grid>
     );
