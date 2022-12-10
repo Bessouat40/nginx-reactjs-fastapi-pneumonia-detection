@@ -16,8 +16,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { CSVLink, CSVDownload } from "react-csv";
+import { CSVLink } from "react-csv";
 import DownloadIcon from '@mui/icons-material/Download';
+import Dropzone from "./dropzone";
+
 
 import FormData from "form-data";
 
@@ -41,12 +43,12 @@ const UploadImgs = () => {
     },
   }));
 
-  const onUpload = (event) => {
+  const onUpload = (files) => {
     setPredict();
     const reception = [];
     const radios = [];
     const listeImages = [];
-    reception.push(event.target.files);
+    reception.push(files);
     for (let i = 0; i < reception[0].length; i++) {
         radios.push({img: URL.createObjectURL(reception[0][i]), filename: reception[0][i].name.split('.').shift()})
         listeImages.push(reception[0][i])
@@ -123,7 +125,7 @@ const UploadImgs = () => {
         ))}
         </ImageList>
         ) : (
-        <Typography variant="h5">Sélectionnez une image</Typography>
+          <Dropzone onDrop={onUpload} text={'upload your image'}/>
         )}
       {predict ? <Stack direction='row' spacing={2}><TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">

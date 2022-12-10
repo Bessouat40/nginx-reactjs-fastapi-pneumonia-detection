@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Button from "@mui/material/Button";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
+import {useDropzone} from 'react-dropzone'
 import { Stack } from "@mui/system";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
+import Dropzone from "./dropzone";
 
 import FormData from "form-data";
 
@@ -16,9 +18,9 @@ const UploadImg = () => {
 
   useEffect(() => {}, [preview]);
 
-  const onUpload = (event) => {
-    setSelected(event.target.files[0]);
-    setPreview(URL.createObjectURL(event.target.files[0]));
+  const onUpload = (files) => {
+    setSelected(files[0]);
+    setPreview(URL.createObjectURL(files[0]));
     setPredict();
   };
 
@@ -46,17 +48,6 @@ const UploadImg = () => {
   return (
     <Stack spacing={5} alignItems="center">
       <Stack spacing={30} direction="row" alignItems="center">
-        <Button
-          style={{backgroundColor:"#514d4c"}}
-          aria-label="upload-picture"
-          component="label"
-          endIcon={<FileUploadIcon />}
-          variant="contained"
-        >
-          Upload image
-          <input hidden type="file" onChange={onUpload} />
-        </Button>
-
         <Stack direction="row" spacing={2}>
           <Button variant="contained" style={{backgroundColor:"#514d4c"}} onClick={onPredict}>
             Predict
@@ -73,9 +64,10 @@ const UploadImg = () => {
           alt="img to predict"
         />
       ) : (
-        <Typography variant="h5">Sélectionnez une image</Typography>
+        <Dropzone onDrop={onUpload} text={'upload your image'}/>
       )}
-      {predict ? <Typography variant="h5">{predict}</Typography> : <div></div>}
+      {predict ? <Typography variant="h5">{predict}</Typography> : <div></div>
+}
     </Stack>
   );
 };
