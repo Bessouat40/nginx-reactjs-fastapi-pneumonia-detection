@@ -17,6 +17,7 @@ import Paper from '@mui/material/Paper';
 import { CSVLink } from "react-csv";
 import DownloadIcon from '@mui/icons-material/Download';
 import Dropzone from "./dropzone";
+import CircleIcon from '@mui/icons-material/Circle';
 
 
 import FormData from "form-data";
@@ -28,8 +29,12 @@ const UploadImgs = () => {
   const [predict, setPredict] = useState();
   const [rows, setRows] = useState();
   const [csvData, setData] = useState();
+  const [pastilles, setPastilles] = useState();
+  const [rerender, setRerender] = useState(false);
 
-  useEffect(() => {}, [preview]);
+  useEffect(() => {
+    setSelected(selected)
+  }, [pastilles]);
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -46,12 +51,15 @@ const UploadImgs = () => {
     const reception = [];
     const radios = [];
     const listeImages = [];
+    const pastille = [];
     reception.push(files);
     for (let i = 0; i < reception[0].length; i++) {
         radios.push({img: URL.createObjectURL(reception[0][i]), filename: reception[0][i].name.split('.').shift()})
         listeImages.push(reception[0][i])
+        pastille.push('inherit')
     }
     setSelected(radios)
+    setPastilles(pastille)
     setImages(listeImages);
   };
 
@@ -65,21 +73,28 @@ const UploadImgs = () => {
     } else {
       const formData = new FormData();
       images.forEach((image) => formData.append("images", image));
-      const resp = await fetch("api/prediction_multiple_pneumonia", {
+      const resp = await fetch("http://localhost:8000/prediction_multiple_pneumonia", {
         body: formData,
         method: "POST",
       });
       const data = await resp.json();
       const row = [];
       const csv_datas = [["Filenames", "Predictions"]];
+      let diagnostic = ''
+      const pastille = []
       data.forEach((d, idx) => {
-        row.push(createData(selected[idx]['filename'], d))
-        csv_datas.push([selected[idx]['filename'], d])
+        if (d === 1) {diagnostic = 'pneumonia'; pastille.push('error')}
+        else {diagnostic = 'normal'; pastille.push('success')}
+        row.push(createData(selected[idx]['filename'], diagnostic))
+        csv_datas.push([selected[idx]['filename'], diagnostic])
       })      
       setRows(row)
       setData(csv_datas)
       console.log(row)
+      setPastilles(pastille)
       setPredict(data);
+      console.log(pastille)
+      setRerender(!rerender)
     }
   };
 
@@ -108,7 +123,14 @@ const UploadImgs = () => {
         {(selected || []).map((url, idx) => (
         <ImageListItem key={idx + url.filename}>
         <img src={url.img} alt={url.filename} style={{ width: 200, height: 200}} />
-        <ImageListItemBar title={url.filename} />
+        <ImageListItemBar title={url.filename}
+              actionIcon={
+                <IconButton
+                  color={pastilles[idx]}
+                  aria-label={`star`}
+                >
+                  <CircleIcon />
+                </IconButton>}/>
         </ImageListItem>
         ))}
         </ImageList>
@@ -117,7 +139,7 @@ const UploadImgs = () => {
           <Dropzone onDrop={onUpload} text={'upload your image'}/>
         )}
       {predict ? 
-      <Stack direction='row' spacing={2} style={{height:450}}>
+      <Stack direction='row' spacing={2} style={{maxHeight:450}}>
         <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
       <TableHead>
