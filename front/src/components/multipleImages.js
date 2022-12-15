@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/system";
-import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { Stack } from "@mui/system";
-import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ImageList from "@mui/material/ImageList";
@@ -67,7 +65,7 @@ const UploadImgs = () => {
     } else {
       const formData = new FormData();
       images.forEach((image) => formData.append("images", image));
-      const resp = await fetch("http://localhost:8000/prediction_multiple_pneumonia", {
+      const resp = await fetch("api/prediction_multiple_pneumonia", {
         body: formData,
         method: "POST",
       });
@@ -105,18 +103,22 @@ const UploadImgs = () => {
         </Stack>
       </Stack>
       {selected ? (
+        <Stack style={{maxHeight:450}}>
         <ImageList cols={5}>
         {(selected || []).map((url, idx) => (
-        <ImageListItem key={url.filename}>
+        <ImageListItem key={idx + url.filename}>
         <img src={url.img} alt={url.filename} style={{ width: 200, height: 200}} />
         <ImageListItemBar title={url.filename} />
         </ImageListItem>
         ))}
         </ImageList>
+        </Stack>
         ) : (
           <Dropzone onDrop={onUpload} text={'upload your image'}/>
         )}
-      {predict ? <Stack direction='row' spacing={2}><TableContainer component={Paper}>
+      {predict ? 
+      <Stack direction='row' spacing={2} style={{height:450}}>
+        <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
       <TableHead>
           <TableRow>
@@ -125,9 +127,9 @@ const UploadImgs = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {rows.map((row, idx) => (
             <TableRow
-              key={row.filename}
+              key={idx}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">

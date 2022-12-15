@@ -1,1 +1,2 @@
-./front/node_modules/
+front/node_modules/
+back/__pycache__/

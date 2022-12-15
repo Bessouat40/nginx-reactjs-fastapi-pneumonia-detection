@@ -1,11 +1,12 @@
 FROM node:16.17.0
 
-COPY ["package.json", "package-lock.json", "./"]
+WORKDIR /app
+
+COPY ./package.json /app/package.json
+COPY ./package-lock.json /app/package-lock.json
+COPY ./public /app/public
+COPY ./src /app/src
 
 RUN npm install --production
 
-COPY . .
-
-EXPOSE 3000
-
-CMD ["npm", "run", "start"]
+CMD npm run start
