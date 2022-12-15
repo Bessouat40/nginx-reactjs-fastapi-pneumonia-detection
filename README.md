@@ -31,4 +31,4 @@ Ensuite rendez vous à cette url pour visualiser le logiciel : `http://localhost
 
 ## Visuel de l'application
 
-![screenshot1](https://github.com/Bessouat40/Logiciel-d-aide-au-diagnostic/blob/main/screen/demi.gif?raw=true)
+![gif_demo](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/demo.gif)
