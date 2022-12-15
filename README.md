@@ -2,7 +2,7 @@
 
 ## Lancement du logiciel (sans docker)
 
-* `git clone https://github.com/Bessouat40/Logiciel-d-aide-au-diagnostic.git`
+* `git clone https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection.git`
 
 Se placer dans le répertoire du projet
 
