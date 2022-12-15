@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import reportWebVitals from "./reportWebVitals";
 import FunctionalityChoice from './components/tab';
 import {Stack } from "@mui/material";
 
@@ -15,5 +14,3 @@ root.render(
     </div>
   </React.StrictMode>
 );
-
-reportWebVitals();
