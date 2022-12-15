@@ -25,7 +25,6 @@ import FormData from "form-data";
 const UploadImgs = () => {
   const [selected, setSelected] = useState();
   const [images, setImages] = useState();
-  const [preview, setPreview] = useState();
   const [predict, setPredict] = useState();
   const [rows, setRows] = useState();
   const [csvData, setData] = useState();
@@ -33,8 +32,7 @@ const UploadImgs = () => {
   const [rerender, setRerender] = useState(false);
 
   useEffect(() => {
-    setSelected(selected)
-  }, [pastilles]);
+  }, []);
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -73,7 +71,7 @@ const UploadImgs = () => {
     } else {
       const formData = new FormData();
       images.forEach((image) => formData.append("images", image));
-      const resp = await fetch("http://localhost:8000/prediction_multiple_pneumonia", {
+      const resp = await fetch('/api/prediction_multiple_pneumonia', {
         body: formData,
         method: "POST",
       });
@@ -90,10 +88,8 @@ const UploadImgs = () => {
       })      
       setRows(row)
       setData(csv_datas)
-      console.log(row)
       setPastilles(pastille)
       setPredict(data);
-      console.log(pastille)
       setRerender(!rerender)
     }
   };
@@ -101,7 +97,6 @@ const UploadImgs = () => {
 
   const onDelete = () => {
     setPredict();
-    setPreview();
     setSelected();
   };
 
@@ -118,7 +113,7 @@ const UploadImgs = () => {
         </Stack>
       </Stack>
       {selected ? (
-        <Stack style={{maxHeight:450}}>
+        <Stack style={{maxHeight:450 }}>
         <ImageList cols={5}>
         {(selected || []).map((url, idx) => (
         <ImageListItem key={idx + url.filename}>

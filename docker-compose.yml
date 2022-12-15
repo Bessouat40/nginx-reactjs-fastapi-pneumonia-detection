@@ -1,6 +1,7 @@
 version: "3"
 services:
   nginx:
+    restart: unless-stopped
     image: nginx
     volumes:
       - ./nginx/:/etc/nginx/
@@ -11,11 +12,13 @@ services:
     - "3000:80"
 
   frontend:
+    restart: unless-stopped
     build: 
       context: ./front
       dockerfile: ./Dockerfile
 
   backend :
+    restart: unless-stopped
     build: 
       context: ./back
       dockerfile: ./Dockerfile
