@@ -1,21 +1,22 @@
 version: "3"
 services:
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx/:/etc/nginx/
+    depends_on:
+      - backend
+      - frontend
+    ports:
+    - "3000:80"
 
   frontend:
     build: 
       context: ./front
       dockerfile: ./Dockerfile
-    ports:
-      - "3000:3000"
-    depends_on:
-      - backend
-    command: ["npm", "run", "start"]
 
   backend :
     build: 
       context: ./back
       dockerfile: ./Dockerfile
-    ports :
-      - "8000:8000"
-    command: ["python", "main.py"]
     
