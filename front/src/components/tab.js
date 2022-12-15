@@ -20,8 +20,8 @@ const FunctionalityChoice = () => {
     <Grid item>
       <Tabs value={value} onChange={handleChange} centered TabIndicatorProps={{
   sx: { backgroundColor: "#514d4c" }}} indicatorColor="#514d4c" textColor="#514d4c">
-        <Tab label="Accueil" />
-        <Tab label="Prédiction sur un dossier d'images" />
+        <Tab label="Home" />
+        <Tab label="Pneumonia Detection" />
       </Tabs>
     </Grid>
       <Grid item>

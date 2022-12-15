@@ -1,12 +1,12 @@
-# Logiciel d'aide au diagnostic d'une pneumonie
+# Webapp : Pneumonia Detection
 
-## Lancement du logiciel (sans docker)
+## USAGE (Whithout Docker)
 
 * `git clone https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection.git`
 
-Se placer dans le répertoire du projet
+Go to project directory
 
-### Lancement de la partie frontend
+### Run frontend
 
 * `cd front`
 
@@ -14,7 +14,7 @@ Se placer dans le répertoire du projet
 
 * `npm start`
 
-### Lancement de la partie backend
+### Run backend
 
 * `cd back`
 
@@ -22,13 +22,13 @@ Se placer dans le répertoire du projet
 
 * `python main.py`
 
-## Lancement du logiciel avec Docker
+## USAGE (With Docker)
 
 * `docker-compose build && docker-compose up`
 
-Ensuite rendez vous à cette url pour visualiser le logiciel : `http://localhost:3000/`
+Go to : `http://localhost:3000/`
 
 
-## Visuel de l'application
+## Webapp
 
 ![gif_demo](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/demo.gif)

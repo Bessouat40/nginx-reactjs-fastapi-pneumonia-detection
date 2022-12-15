@@ -26,18 +26,18 @@ const TitleComponent = () => {
         }}
         alt="logo"
       />
-      <Typography variant="h1">Pathology Detection</Typography>
+      <Typography variant="h1">PneumonIA</Typography>
           </Stack>
     </AppBar>
         <Stack alignItems='center' spacing={1}>
     <Stack>
     <Typography justifyContent='center'>
-      Projet réalisé par Roman Bessouat. 
-      Le modèle de prédiction est un modèle de Random Forest ayant une accuracy d'environ 94%.
+      Project realised by Roman Bessouat (Former ESIEE Paris Student).
+      Prediction model is a Random Forest with 94% accuracy.
     </Typography>
     <Typography justifyContent='center'>
     </Typography>
-    <Typography>L'objectif est de mettre en place un logiciel permettant la détection d'une pneumonie à partir de l'image d'une radiographie du thorax.</Typography>
+    <Typography>The goal is to develop a software for pneumonia detection with a thorax radiography.</Typography>
     </Stack>
     <img src={Perfs}
     style={{ width: 400, height: 250 }}
@@ -56,7 +56,7 @@ const TitleComponent = () => {
         }}
         alt="logo"
       />
-        Mon github
+        My github
         </Stack>
         </Link>
         <Link href='https://www.linkedin.com/in/roman-bessouat-03a15618b/' target='_blank' underline='hover'>
@@ -71,11 +71,11 @@ const TitleComponent = () => {
         }}
         alt="logo"
       />
-        Mon Linkedin
+        My Linkedin
         </Stack>
         </Link>
     </Stack>
-    <Link href='https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia' target="_blank" underline='hover'>Des images de radiographies du thorax sont téléchargeables ici</Link>
+    <Link href='https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia' target="_blank" underline='hover'>You can download thorax radiography here</Link>
     </Stack>
     </Stack>
   );
