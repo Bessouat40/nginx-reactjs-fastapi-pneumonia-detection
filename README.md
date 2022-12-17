@@ -6,6 +6,8 @@
 
 Go to project directory
 
+`cp .env.example .env`
+
 ### Run frontend
 
 * `cd front`
@@ -24,6 +26,7 @@ Go to project directory
 
 ## USAGE (With Docker)
 
+* `cp .env.example .env`
 * `make start`
 
 Go to : `http://localhost:3000/`
