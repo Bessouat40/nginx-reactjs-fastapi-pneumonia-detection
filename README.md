@@ -24,7 +24,7 @@ Go to project directory
 
 ## USAGE (With Docker)
 
-* `docker-compose build && docker-compose up`
+* `make start`
 
 Go to : `http://localhost:3000/`
 
