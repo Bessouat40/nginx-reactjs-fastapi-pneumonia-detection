@@ -5,7 +5,7 @@ import { Typography } from "@mui/material";
 const Data = () => {
     return (
         <Stack>
-            <Typography>Data here</Typography>
+            <Typography>Data here soon</Typography>
         </Stack>
     )
 }
