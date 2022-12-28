@@ -4,6 +4,7 @@ import Tab from '@mui/material/Tab';
 import Grid from '@mui/material/Grid';
 import UploadImgs from './multipleImages';
 import TitleComponent from './home';
+import Data from './data';
 
 const FunctionalityChoice = () => {
   const [value, setValue] = React.useState(0);
@@ -22,11 +23,13 @@ const FunctionalityChoice = () => {
   sx: { backgroundColor: "#514d4c" }}} indicatorColor="#514d4c" textColor="#514d4c">
         <Tab label="Home" />
         <Tab label="Pneumonia Detection" />
+        <Tab label="Database" />
       </Tabs>
     </Grid>
       <Grid item>
         {value===0 && (<TitleComponent/>)}
         {value===1 && (<UploadImgs/>)}
+        {value===2 && (<Data/>)}
       </Grid>
     </Grid>
     );
