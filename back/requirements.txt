@@ -1,7 +1,6 @@
+numpy
 pillow
-numpy 
 joblib
-scikit-learn
 python-multipart
 uvicorn
 fastapi
