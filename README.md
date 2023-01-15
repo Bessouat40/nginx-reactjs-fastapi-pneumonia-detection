@@ -2,7 +2,7 @@
 
 ## USAGE (Whithout Docker)
 
-* `git clone https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection.git`
+- `git clone https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection.git`
 
 Go to project directory
 
@@ -10,28 +10,27 @@ Go to project directory
 
 ### Run frontend
 
-* `cd front`
+- `cd front`
 
-* `npm install`
+- `npm install`
 
-* `npm start`
+- `npm start`
 
 ### Run backend
 
-* `cd back`
+- `cd back`
 
-* `pip install -r requirements.txt`
+- `pip install -r requirements.txt`
 
-* `python main.py`
+- `python main.py`
 
 ## USAGE (With Docker)
 
-* `cp .env.example .env`
-* `make start`
+- `cp .env.example .env`
+- `make start`
 
 Go to : `http://localhost:3000/`
 
-
 ## Webapp
 
-![gif_demo](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/demo.gif)
+![gif_demo](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/test.gif)
