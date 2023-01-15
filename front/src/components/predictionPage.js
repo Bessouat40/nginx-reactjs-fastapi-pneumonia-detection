@@ -3,9 +3,9 @@ import Button from "@mui/material/Button";
 import { Stack } from "@mui/system";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
-import Dropzone from "./dropzone";
-import Images from "./images";
-import Tables from "./tables";
+import Dropzone from "./subcomponents/dropzone";
+import Images from "./subcomponents/images";
+import Tables from "./subcomponents/tables";
 
 
 import FormData from "form-data";
