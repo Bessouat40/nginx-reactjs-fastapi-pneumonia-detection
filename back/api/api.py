@@ -5,8 +5,10 @@ from typing import List
 from predict import Inference
 import numpy as np
 from fastapi.middleware.cors import CORSMiddleware
+from database import Database
 
 inf = Inference()
+db = Database()
 
 app = FastAPI()
 
@@ -37,3 +39,14 @@ async def detect_pneumonia(images: List[UploadFile]=File(...)):
     inf.load_multiple_img(images_bytes)
     pred = list(inf.predict_image())
     return pred
+
+@app.post('/add_data')
+async def add_data(data: List[List]):
+    """Add Data to Postgres Database
+
+    Args:
+        data (List[List]): List containing name and diagnostic for all patients
+    """
+    print('data : ', data)
+    db.add(data)
+    print('coucou')
