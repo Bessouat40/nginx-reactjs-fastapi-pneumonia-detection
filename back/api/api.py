@@ -23,20 +23,17 @@ class PredResponse(BaseModel):
 
 @app.post('/prediction_multiple_pneumonia', response_model=List[int])
 async def detect_pneumonia(images: List[UploadFile]=File(...)):
+    """Pneumonia detection on single or multiple images
+
+    Args:
+        images (List[UploadFile], optional): List of images as bytes
+
+    Returns:
+        pred: List corresponding to images diagnostic (0 : no pneumonia, 1 : pneumonia)
+    """
     images_bytes = []
     for image in images :
         images_bytes.append(image.file.read())
     inf.load_multiple_img(images_bytes)
     pred = list(inf.predict_image())
     return pred
-
-@app.post('/prediction_single_pneumonia')
-async def detect_pneumonia(image: UploadFile = File(...),):
-    image_bytes = image.file.read()
-    inf.load_single_img(image_bytes)
-    pred = inf.predict_image()
-    if pred[0] == 0 :
-        diagnostic = "Le modèle n'a pas détecté de pneumonie"
-    else :
-        diagnostic = "Le modèle a détecté une pneumonie"
-    return diagnostic
