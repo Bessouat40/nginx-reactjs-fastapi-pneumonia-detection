@@ -6,3 +6,6 @@ start:
 
 stop:
 	docker-compose down
+
+prod:
+	docker-compose up -d
