@@ -4,3 +4,5 @@ joblib
 python-multipart
 uvicorn
 fastapi
+psycopg2-binary
+SQLAlchemy
