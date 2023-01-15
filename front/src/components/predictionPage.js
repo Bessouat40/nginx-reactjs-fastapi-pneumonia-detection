@@ -104,6 +104,20 @@ const PredictionPage = () => {
     setSelected();
   };
 
+  const sendStoreData = () => {
+    const formData = new FormData();
+    csvData.forEach((data) => formData.append("data", data));
+    fetch('/api/add_data', {
+      body: formData,
+      method: "POST",
+    });
+  }
+
+  const onStore = () => {
+    console.log('data : ', csvData);
+    sendStoreData();
+  }
+
   return (
     <Stack spacing={5} alignItems="center">
       <Stack spacing={30} direction="row" alignItems="center">
@@ -122,7 +136,13 @@ const PredictionPage = () => {
           <Dropzone onDrop={onUpload} text={'upload your image'}/>
         )}
       {predict ? 
-      <Tables rows={rows} csvData={csvData}/> : <div></div>}
+      <Stack direction="row" spacing={2}>
+      <Button variant="contained" style={{backgroundColor:"#514d4c", height:200}} onClick={onStore}>
+        Store Data
+      </Button>
+      <Tables rows={rows} csvData={csvData}/>
+    </Stack>
+       : <div></div>}
     </Stack>
   );
 };
