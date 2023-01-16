@@ -7,14 +7,16 @@ class Database() :
 
         self.engine = create_engine("postgresql+psycopg2://postgres:postgres@db:5432/medicalDB")
         self.conn = self.engine.connect()
+        self.add_data = []
 
 
     def add(self, data) :
         """Add data to Postgres Database
-
         Args:
             data (List[List]): Data to add
         """
         query="INSERT INTO  medicalTable (nom_patient, diagnostic)  VALUES(%s,%s)"
-        my_data=data
-        self.conn.execute(query,my_data)
+        for d in data :
+            self.add_data.append((d[0], d[1]))
+        self.conn.execute(query,self.add_data)
+        self.add_data = []
