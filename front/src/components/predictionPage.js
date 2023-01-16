@@ -106,7 +106,7 @@ const PredictionPage = () => {
 
   const sendStoreData = () => {
     const formData = new FormData();
-    csvData.forEach((data) => formData.append("data", data));
+    csvData.forEach((data) => formData.append("data", JSON.stringify(data)));
     fetch('/api/add_data', {
       body: formData,
       method: "POST",
@@ -137,7 +137,7 @@ const PredictionPage = () => {
         )}
       {predict ? 
       <Stack direction="row" spacing={2}>
-      <Button variant="contained" style={{backgroundColor:"#514d4c", height:200}} onClick={onStore}>
+      <Button variant="contained" style={{backgroundColor:"#514d4c", height:40}} onClick={onStore}>
         Store Data
       </Button>
       <Tables rows={rows} csvData={csvData}/>
