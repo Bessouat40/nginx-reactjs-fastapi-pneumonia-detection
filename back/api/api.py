@@ -47,3 +47,13 @@ async def add_data(data: Request):
     match_datas = recognize_data(data_string)[1:]
     datas = split_data(match_datas)
     db.add(datas)
+
+@app.post('/require')
+async def get_data():
+    """Get data from database
+
+    Returns:
+        data: data stored in Postgres database
+    """
+    data = db.require()
+    return data

@@ -85,7 +85,7 @@ const PredictionPage = () => {
    */
   const onPredict = async () => {
     if (!selected) {
-      alert("Veuillez uploader une image pour lancer la prédiction");
+      alert("Please upload image(s) to launch prediction");
     } else {
       const resp = await sendFormData();
       const data = await resp.json();
@@ -114,8 +114,8 @@ const PredictionPage = () => {
   }
 
   const onStore = () => {
-    console.log('data : ', csvData);
     sendStoreData();
+    alert("Data succesfully stored")
   }
 
   return (
