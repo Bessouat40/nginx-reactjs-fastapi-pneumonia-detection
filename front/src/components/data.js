@@ -9,10 +9,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import SearchBar from "material-ui-search-bar";
 
 const Data = () => {
 
     const [rows, setRows] = useState();
+    const [filterRows, setFilter] = useState();
+    const [searched, setSearched] = useState("");
 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
@@ -27,6 +30,25 @@ const Data = () => {
     const createData = (filename, pred) => {
         return {filename, pred};
       }
+
+    /**
+     * 
+     * @param {*} searchedVal patient name we want to filter on 
+     */
+    const requestSearch = (searchedVal) => {
+    const filteredRows = rows.filter((row) => {
+        return row.filename.toLowerCase().includes(searchedVal.toLowerCase());
+    });
+    setFilter(filteredRows);
+    };
+
+    /**
+     * Reset display
+     */
+    const cancelSearch = () => {
+        setSearched("");
+        requestSearch(searched);
+      };
 
     /**
      * Require data from Postgres database
@@ -50,12 +72,19 @@ const Data = () => {
             row.push(createData(d[0], d[1]))
           })  
         setRows(row)
+        setFilter(row)
       }
 
     return (
         <Stack spacing={5} alignItems="center">
             {rows ? (
-                <Stack direction='row' spacing={2} style={{maxHeight:700}}>
+                <Stack spacing={2} style={{maxHeight:700}}>
+                    <SearchBar
+                    value={searched}
+                    onChange={(searchVal) => requestSearch(searchVal)}
+                    onCancelSearch={() => cancelSearch()}
+                    placeholder="Filter on a patient name"
+                    />
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth:1200}} aria-label="simple table">
                         <TableHead>
@@ -65,7 +94,7 @@ const Data = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                        {rows.map((row, idx) => (
+                        {filterRows.map((row, idx) => (
                             <TableRow
                             key={idx}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
