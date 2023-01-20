@@ -3,8 +3,9 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Grid from '@mui/material/Grid';
 import PredictionPage from './predictionPage';
-import TitleComponent from './home';
+import TitleComponent from './about';
 import Data from './data';
+import Home from './home';
 
 const FunctionalityChoice = () => {
   const [value, setValue] = React.useState(0);
@@ -24,12 +25,14 @@ const FunctionalityChoice = () => {
         <Tab label="Home" />
         <Tab label="Pneumonia Detection" />
         <Tab label="Database" />
+        <Tab label="About" />
       </Tabs>
     </Grid>
       <Grid item>
-        {value===0 && (<TitleComponent/>)}
+        {value===0 && (<Home/>)}
         {value===1 && (<PredictionPage/>)}
         {value===2 && (<Data/>)}
+        {value===3 && (<TitleComponent/>)}
       </Grid>
     </Grid>
     );
