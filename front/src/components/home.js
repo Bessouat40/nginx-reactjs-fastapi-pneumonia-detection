@@ -11,7 +11,7 @@ const Home = () => {
     const [datas, setData] = useState();
 
     useEffect(() => {
-        const sendFetch = async () => {
+        const sendFetchData = async () => {
             const resp = await fetch('/api/require', {
                 method: "POST",
                 });
@@ -23,7 +23,7 @@ const Home = () => {
         * Receive data to display
         */
         const initData = async () => {
-            const data = await sendFetch()
+            const data = await sendFetchData()
             let pneumo = 0;
             let norm = 0;
             data.forEach((d) => {
@@ -32,13 +32,12 @@ const Home = () => {
               })  
             setData([norm, pneumo])
           }
+
         initData();
     }, []);
 
-    
-
     return (
-        <Stack spacing={15} alignItems='center' >
+        <Stack spacing={5} alignItems='center' >
         <AppBar position="relative" color="inherit">
         <Stack 
         justifyContent="center"
@@ -57,7 +56,8 @@ const Home = () => {
         <Typography variant="h1">PneumonIA</Typography>
             </Stack>
         </AppBar>
-            <Stack alignItems='center' spacing={1}>
+            <Stack alignItems='center' spacing={7}>
+            <Typography variant="h2">Database Informations :</Typography>
             {datas ? (<Chart
                 options={{
                     chart: {
@@ -82,4 +82,4 @@ const Home = () => {
     );
     };
 
-    export default Home;
+export default Home;

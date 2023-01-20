@@ -33,4 +33,20 @@ Go to : `http://localhost:3000/`
 
 ## Webapp
 
-![gif_demo](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/test.gif)
+### Home page
+
+![home](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/home.png)
+
+### Pneumonia Detection page
+
+![pred1](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/predict1.png)
+![pred2](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/predict2.png)
+![pred3](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/predict3.png)
+
+### Database page
+
+![db](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/database.png)
+
+### About page
+
+![about](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/about.png)
