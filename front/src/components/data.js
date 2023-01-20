@@ -1,6 +1,5 @@
-import React, { useState }from "react";
+import React, { useState, useEffect }from "react";
 import { Stack } from "@mui/system";
-import Button from "@mui/material/Button";
 import { styled } from "@mui/system";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -17,6 +16,38 @@ const Data = () => {
     const [filterRows, setFilter] = useState();
     const [searched, setSearched] = useState("");
 
+    useEffect(() => {
+        const sendFetch = async () => {
+            const resp = await fetch('/api/require', {
+                method: "POST",
+                });
+            const data = await resp.json();
+            console.log('coucou1')
+            return data
+            };
+    
+        const createData = (filename, pred) => {
+            console.log('coucou2')
+            return {filename, pred};
+            };
+    
+        /**
+        * Receive data to display
+        */
+        const getData = async () => {
+            const data = await sendFetch()
+            const row = [];
+            data.forEach((d) => {
+                row.push(createData(d[0], d[1]))
+                })  
+            console.log(row)
+            setRows(row)
+            setFilter(row)
+            };
+
+        getData();
+    }, []);
+
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
           backgroundColor: "#514d4c",
@@ -25,11 +56,7 @@ const Data = () => {
         [`&.${tableCellClasses.body}`]: {
           fontSize: 14,
         },
-      }));
-
-    const createData = (filename, pred) => {
-        return {filename, pred};
-      }
+      }));    
 
     /**
      * 
@@ -50,34 +77,8 @@ const Data = () => {
         requestSearch(searched);
       };
 
-    /**
-     * Require data from Postgres database
-     * @returns data received
-     */
-    const sendFetch = async () => {
-        const resp = await fetch('/api/require', {
-            method: "POST",
-          });
-        const data = await resp.json();
-        return data
-    }
-
-    /**
-     * Receive data to display
-     */
-    const onReceive = async () => {
-        const data = await sendFetch()
-        const row = [];
-        data.forEach((d) => {
-            row.push(createData(d[0], d[1]))
-          })  
-        setRows(row)
-        setFilter(row)
-      }
-
     return (
         <Stack spacing={5} alignItems="center">
-            {rows ? (
                 <Stack spacing={2} style={{maxHeight:700}}>
                     <SearchBar
                     value={searched}
@@ -85,7 +86,7 @@ const Data = () => {
                     onCancelSearch={() => cancelSearch()}
                     placeholder="Filter on a patient name"
                     />
-                    <TableContainer component={Paper}>
+                    {filterRows ? (<TableContainer component={Paper}>
                         <Table sx={{ minWidth:1200}} aria-label="simple table">
                         <TableHead>
                             <TableRow>
@@ -107,17 +108,10 @@ const Data = () => {
                         ))}
                         </TableBody>
                         </Table>
-                    </TableContainer>
+                    </TableContainer>) : <div></div>}
                 </Stack>
-            ) : (
-                <Button variant="contained" style={{backgroundColor:"#514d4c", height:100, width:200}} onClick={onReceive}>
-                    Display Data
-                </Button>)
-
-            }
-            
         </Stack>
-    )
-}
+    );
+    };
 
 export default Data;

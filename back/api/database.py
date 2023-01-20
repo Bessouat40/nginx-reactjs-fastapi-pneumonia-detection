@@ -32,3 +32,4 @@ class Database() :
         data = self.conn.execute("SELECT * FROM medicaltable").fetchall()
         final_data = to_list(data)
         return final_data
+    
