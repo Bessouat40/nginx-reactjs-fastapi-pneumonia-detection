@@ -13,7 +13,10 @@ const Images = (props) => {
   }, []);
  
   return (
-        <Stack style={{maxHeight:450 }}>
+        <Stack style={{maxHeight:450, backgroundColor:"#FFFFFF",
+        borderRadius:"10px",}}
+          sx={{border:15, borderColor:"#FFFFFF"
+          }}>
         <ImageList cols={5}>
         {(props.selected || []).map((url, idx) => (
         <ImageListItem key={idx + url.filename}>

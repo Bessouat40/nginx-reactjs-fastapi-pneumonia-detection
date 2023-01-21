@@ -37,7 +37,15 @@ const Home = () => {
     }, []);
 
     return (
-        <Stack spacing={5} alignItems='center' >
+        <Stack style={{minHeight:"100vh", overflow:'hidden',
+        alignItems: 'center',
+        marginBottom:20
+  }}>
+        <Stack spacing={5} alignItems='center' style={{marginTop:"2%", 
+    width:"90%", 
+    maxEight:"90%",
+    borderRadius:"10px",
+    border:'25',}} sx={{border:15, borderColor:"#FFFFFF", backgroundColor:"#FFFFFF"}}>
         <AppBar position="relative" color="inherit">
         <Stack 
         justifyContent="center"
@@ -53,7 +61,7 @@ const Home = () => {
             }}
             alt="logo"
         />
-        <Typography variant="h1">PneumonIA</Typography>
+        <Typography variant="h2">PneumonIA</Typography>
             </Stack>
         </AppBar>
             <Stack alignItems='center' spacing={7}>
@@ -77,6 +85,7 @@ const Home = () => {
                 width="500"
                 />) :
                 (<div></div>)}
+        </Stack>
         </Stack>
         </Stack>
     );

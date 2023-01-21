@@ -119,13 +119,21 @@ const PredictionPage = () => {
   }
 
   return (
-    <Stack spacing={5} alignItems="center">
-      <Stack spacing={30} direction="row" alignItems="center">
+    <Stack style={{minHeight:"100vh", overflow:'hidden',
+    alignItems: 'center',
+    marginBottom:20
+  }}>
+    <Stack spacing={5} alignItems="center" 
+    style={{
+    maxWidth:"90%", 
+    borderRadius:"10px"}} sx={{border:15, borderColor:"#FFFFFF", backgroundColor:"#FFFFFF"}}>
+      <Stack spacing={30} direction="row" alignItems="center"
+      >
         <Stack direction="row" spacing={2}>
-          <Button variant="contained" style={{backgroundColor:"#514d4c"}} onClick={onPredict}>
+          <Button variant="contained" style={{backgroundColor:"#740d10"}} onClick={onPredict}>
             Predict
           </Button>
-          <IconButton aria-label="delete" onClick={onDelete}>
+          <IconButton aria-label="delete" onClick={onDelete} style={{color:'#740d10'}}>
             <DeleteIcon/>
           </IconButton>
         </Stack>
@@ -137,12 +145,13 @@ const PredictionPage = () => {
         )}
       {predict ? 
       <Stack direction="row" spacing={2}>
-      <Button variant="contained" style={{backgroundColor:"#514d4c", height:40}} onClick={onStore}>
+      <Button variant="contained" style={{backgroundColor:"#740d10", height:40}} onClick={onStore}>
         Store Data
       </Button>
       <Tables rows={rows} csvData={csvData}/>
     </Stack>
        : <div></div>}
+    </Stack>
     </Stack>
   );
 };

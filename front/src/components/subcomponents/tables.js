@@ -19,7 +19,7 @@ const Tables = (props) => {
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: "#514d4c",
+      backgroundColor: "#740d10",
       color: "white",
     },
     [`&.${tableCellClasses.body}`]: {
@@ -28,7 +28,10 @@ const Tables = (props) => {
   }));
 
   return (
-      <Stack direction='row' spacing={2} style={{maxHeight:450}}>
+      <Stack direction='row' spacing={2} style={{maxHeight:450, backgroundColor:"#FFFFFF",
+      borderRadius:"10px",}}
+        sx={{border:15, borderColor:"#FFFFFF"
+        }}>
         <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
       <TableHead>
@@ -54,7 +57,7 @@ const Tables = (props) => {
     </TableContainer>
     <CSVLink data={props.csvData} filename={"predictions.csv"}>
     <IconButton>
-    <DownloadIcon/>
+    <DownloadIcon style={{color:'#740d10'}}/>
     </IconButton>
     </CSVLink>
     </Stack>

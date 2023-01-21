@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Grid from '@mui/material/Grid';
 import PredictionPage from './predictionPage';
 import TitleComponent from './about';
 import Data from './data';
 import Home from './home';
+import { Stack } from '@mui/system';
 
 const FunctionalityChoice = () => {
   const [value, setValue] = React.useState(0);
@@ -15,26 +15,26 @@ const FunctionalityChoice = () => {
   };
 
     return (
-        <Grid 
-        container 
+        <Stack  
         direction='column'
-        spacing={3}>
-    <Grid item>
+        spacing={3}
+        >
+    <Stack>
       <Tabs value={value} onChange={handleChange} centered TabIndicatorProps={{
-  sx: { backgroundColor: "#514d4c" }}} indicatorColor="#514d4c" textColor="#514d4c">
+  sx: { backgroundColor: "#FFFFFF" }}} indicatorColor="#FFFFFF" textColor="#FFFFFF">
         <Tab label="Home" />
         <Tab label="Pneumonia Detection" />
         <Tab label="Database" />
         <Tab label="About" />
       </Tabs>
-    </Grid>
-      <Grid item>
+    </Stack>
+      <Stack>
         {value===0 && (<Home/>)}
         {value===1 && (<PredictionPage/>)}
         {value===2 && (<Data/>)}
         {value===3 && (<TitleComponent/>)}
-      </Grid>
-    </Grid>
+      </Stack>
+    </Stack>
     );
    };
    

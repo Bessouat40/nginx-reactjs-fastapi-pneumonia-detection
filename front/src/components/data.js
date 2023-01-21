@@ -50,7 +50,7 @@ const Data = () => {
 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
-          backgroundColor: "#514d4c",
+          backgroundColor: "#740d10",
           color: "white",
         },
         [`&.${tableCellClasses.body}`]: {
@@ -78,8 +78,10 @@ const Data = () => {
       };
 
     return (
+        <Stack style={{height:"100vh", overflow:'hidden'}}>
         <Stack spacing={5} alignItems="center">
-                <Stack spacing={2} style={{maxHeight:700}}>
+                <Stack spacing={2} style={{maxHeight:700, backgroundColor:"#FFFFFF",
+        borderRadius:"10px",}} sx={{border:15, borderColor:"#FFFFFF"}}>
                     <SearchBar
                     value={searched}
                     onChange={(searchVal) => requestSearch(searchVal)}
@@ -110,6 +112,7 @@ const Data = () => {
                         </Table>
                     </TableContainer>) : <div></div>}
                 </Stack>
+        </Stack>
         </Stack>
     );
     };

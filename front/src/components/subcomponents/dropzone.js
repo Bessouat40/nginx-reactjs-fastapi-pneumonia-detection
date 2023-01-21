@@ -13,13 +13,13 @@ return (
     <div {...getRootProps()} style={{  align: 'center',
     borderWidth: 2,
     borderRadius: 2,
-    borderColor: '#eeeeee',
+    borderColor:"#FFFFFF",
     borderStyle: 'dashed',
-    backgroundColor: '#514d4c', width:300, height:100}}>
+    backgroundColor: '#740d10', width:300, height:100}}>
     <Stack alignItems='center'>
-        <CloudUploadIcon style={{width:50, height:50 }} align='center'/>
+        <CloudUploadIcon style={{width:50, height:50, color:'white'}} align='center' />
     <input {...getInputProps()} />
-        <Typography color="white">Upload your image(s)</Typography>
+        <Typography color='white'>Upload your image(s)</Typography>
         </Stack>
     </div>
 )
