@@ -8,10 +8,14 @@ import Link from '@mui/material/Link';
 
 const TitleComponent = () => {
   return (
-    <Stack style={{position:"fixed",
+    <Stack style={{height:"100vh", overflow:'hidden'
+  }}>
+    <Stack style={{position:"absolute",
+      borderRadius:"10px",
+      border:'25',
       top: "50%",
       left: "50%",
-      transform: "translate(-50%, -50%)" }}>
+      transform: "translate(-50%, -50%)" }} sx={{border:15, borderColor:"#FFFFFF", backgroundColor:"#FFFFFF"}}>
       <Stack alignItems='center' spacing={7}>
         <Stack>
           <Typography justifyContent='center'>
@@ -60,6 +64,7 @@ const TitleComponent = () => {
               </Link>
           </Stack>
         </Stack>
+    </Stack>
     </Stack>
   );
 };
