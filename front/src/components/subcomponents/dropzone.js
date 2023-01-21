@@ -17,7 +17,7 @@ return (
     borderStyle: 'dashed',
     backgroundColor: '#740d10', width:300, height:100}}>
     <Stack alignItems='center'>
-        <CloudUploadIcon style={{width:50, height:50, color:'white'}} align='center' />
+        <CloudUploadIcon style={{width:50, height:50, color:'white'}}/>
     <input {...getInputProps()} />
         <Typography color='white'>Upload your image(s)</Typography>
         </Stack>
