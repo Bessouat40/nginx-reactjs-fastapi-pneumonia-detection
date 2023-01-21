@@ -41,12 +41,7 @@ const Home = () => {
         alignItems: 'center',
         marginBottom:20
   }}>
-        <Stack spacing={5} alignItems='center' style={{marginTop:"2%", 
-    width:"90%", 
-    maxEight:"90%",
-    borderRadius:"10px",
-    border:'25',}} sx={{border:15, borderColor:"#FFFFFF", backgroundColor:"#FFFFFF"}}>
-        <AppBar position="relative" color="inherit">
+    <AppBar position="relative" color="inherit" style={{width:"60%", borderRadius:"10px"}}>
         <Stack 
         justifyContent="center"
         alignItems="center" 
@@ -61,11 +56,27 @@ const Home = () => {
             }}
             alt="logo"
         />
-        <Typography variant="h2">PneumonIA</Typography>
+        <Typography variant="h1" 
+        style={{background:"linear-gradient(39deg, rgba(210,191,195,1) 0%, rgba(170,70,86,1) 50%, rgba(116,13,16,1) 100%)",
+        webkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+        fontFamily:"skia"
+        }}>PneumonIA</Typography>
             </Stack>
         </AppBar>
+        <Stack spacing={5} alignItems='center' style={{marginTop:"2%", 
+    width:"90%", 
+    maxEight:"90%",
+    borderRadius:"10px"}} 
+    sx={{borderColor:"#FFFFFF", backgroundColor:"#FFFFFF"}}>
+        
             <Stack alignItems='center' spacing={7}>
-            <Typography variant="h2">Database Informations :</Typography>
+            <Typography variant="h2"
+            style={{background:"linear-gradient(39deg, rgba(210,191,195,1) 0%, rgba(170,70,86,1) 50%, rgba(116,13,16,1) 100%)",
+            webkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            fontFamily:"skia"
+            }}>Database Informations :</Typography>
             {datas ? (<Chart
                 options={{
                     chart: {
