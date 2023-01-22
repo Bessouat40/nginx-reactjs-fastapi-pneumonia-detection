@@ -22,10 +22,10 @@ const FunctionalityChoice = () => {
     <Stack>
       <Tabs value={value} onChange={handleChange} centered TabIndicatorProps={{
   sx: { backgroundColor: "#FFFFFF" }}} indicatorColor="#FFFFFF" textColor="#FFFFFF">
-        <Tab label="Home" />
-        <Tab label="Pneumonia Detection" />
-        <Tab label="Database" />
-        <Tab label="About" />
+        <Tab label="Home" style={{fontFamily:"skia", color:'white'}}/>
+        <Tab label="Pneumonia Detection" style={{fontFamily:"skia", color:'white'}}/>
+        <Tab label="Database" style={{fontFamily:"skia", color:'white'}}/>
+        <Tab label="About" style={{fontFamily:"skia", color:'white'}}/>
       </Tabs>
     </Stack>
       <Stack>
