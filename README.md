@@ -35,18 +35,18 @@ Go to : `http://localhost:3000/`
 
 ### Home page
 
-![home](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/home-red.png)
+![home](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/home.png)
 
 ### Pneumonia Detection page
 
-![pred1](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/red-pred.png)
-![pred2](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/red-pred2.png)
-![pred3](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/red-pred3.png)
+![pred1](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/pred1.png)
+![pred2](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/pred2.png)
+![pred3](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/pred3.png)
 
 ### Database page
 
-![db](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/db-red.png)
+![db](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/db.png)
 
 ### About page
 
-![about](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/about-red.png)
+![about](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/about.png)
