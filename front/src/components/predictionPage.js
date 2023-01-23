@@ -6,7 +6,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Dropzone from "./subcomponents/dropzone";
 import Images from "./subcomponents/images";
 import Tables from "./subcomponents/tables";
-
+import CircularProgress from '@mui/material/CircularProgress';
 
 import FormData from "form-data";
 
@@ -17,6 +17,7 @@ const PredictionPage = () => {
   const [rows, setRows] = useState();
   const [csvData, setData] = useState();
   const [pastilles, setPastilles] = useState();
+  const [isLoading, setLoading] = useState(false);
   const [rerender, setRerender] = useState(false);
 
   useEffect(() => {
@@ -87,14 +88,16 @@ const PredictionPage = () => {
     if (!selected) {
       alert("Please upload image(s) to launch prediction");
     } else {
+      setLoading(true);
       const resp = await sendFormData();
       const data = await resp.json();
-      const [row, csv_datas, pastille] = storeData(data)    
-      setRows(row)
-      setData(csv_datas)
-      setPastilles(pastille)
+      const [row, csv_datas, pastille] = storeData(data);  
+      setRows(row);
+      setData(csv_datas);
+      setPastilles(pastille);
       setPredict(data);
-      setRerender(!rerender)
+      setRerender(!rerender);
+      setLoading(false);
     }
   };
 
@@ -102,6 +105,7 @@ const PredictionPage = () => {
   const onDelete = () => {
     setPredict();
     setSelected();
+    setLoading(false);
   };
 
   const sendStoreData = () => {
@@ -143,13 +147,16 @@ const PredictionPage = () => {
         ) : (
           <Dropzone onDrop={onUpload} text={'upload your image'}/>
         )}
+      {isLoading ? (<Stack>
+        <CircularProgress style={{color:"#740d10"}}/>
+        </Stack>):(null)}
       {predict ? 
-      <Stack direction="row" spacing={2}>
+      (<Stack direction="row" spacing={2}>
       <Button variant="contained" style={{backgroundColor:"#740d10", height:40}} onClick={onStore}>
         Store Data
       </Button>
       <Tables rows={rows} csvData={csvData}/>
-    </Stack>
+    </Stack>)
        : <div></div>}
     </Stack>
     </Stack>
