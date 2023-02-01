@@ -123,18 +123,28 @@ const PredictionPage = () => {
   }
 
   return (
-    <Stack style={{minHeight:"100vh", overflow:'hidden',
-    alignItems: 'center',
-    marginBottom:20
-  }}>
+    <Stack sx={{
+                minHeight:"100vh", overflow:'hidden',
+                alignItems: 'center',
+                marginBottom:20}}>
     <Stack spacing={5} alignItems="center" 
     style={{
     maxWidth:"90%", 
-    borderRadius:"10px"}} sx={{border:15, borderColor:"#FFFFFF", backgroundColor:"#FFFFFF"}}>
+    borderRadius:"10px"}} 
+    sx={{
+      maxWidth:"90%", 
+      borderRadius:"10px",
+      border:15, 
+      borderColor:"#FFFFFF", 
+      backgroundColor:"#FFFFFF"}}>
       <Stack spacing={30} direction="row" alignItems="center"
       >
         <Stack direction="row" spacing={2}>
-          <Button variant="contained" style={{backgroundColor:"#740d10"}} onClick={onPredict}>
+          <Button variant="contained" 
+            sx={{backgroundColor:"#740d10",
+            '&:hover': {
+              backgroundColor: '#aa4656'}}} 
+            onClick={onPredict}>
             Predict
           </Button>
           <IconButton aria-label="delete" onClick={onDelete} style={{color:'#740d10'}}>
@@ -148,11 +158,15 @@ const PredictionPage = () => {
           <Dropzone onDrop={onUpload} text={'upload your image'}/>
         )}
       {isLoading ? (<Stack>
-        <CircularProgress style={{color:"#740d10"}}/>
+        <CircularProgress sx={{color:"#740d10"}}/>
         </Stack>):(null)}
       {predict ? 
       (<Stack direction="row" spacing={2}>
-      <Button variant="contained" style={{backgroundColor:"#740d10", height:40}} onClick={onStore}>
+      <Button variant="contained" 
+      sx={{backgroundColor:"#740d10", 
+          height:40,
+          '&:hover': {
+          backgroundColor: '#aa4656'}}} onClick={onStore}>
         Store Data
       </Button>
       <Tables rows={rows} csvData={csvData}/>

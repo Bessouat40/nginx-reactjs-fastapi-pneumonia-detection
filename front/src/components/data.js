@@ -78,10 +78,17 @@ const Data = () => {
       };
 
     return (
-        <Stack style={{height:"100vh", overflow:'hidden'}}>
+        <Stack sx={{height:"100vh", overflow:'hidden'}}>
         <Stack spacing={5} alignItems="center">
-                <Stack spacing={2} style={{maxHeight:700, backgroundColor:"#FFFFFF",
-        borderRadius:"10px",}} sx={{border:15, borderColor:"#FFFFFF"}}>
+                <Stack spacing={2} 
+        //         style={{maxHeight:700, backgroundColor:"#FFFFFF",
+        // borderRadius:"10px",}} 
+        sx={{
+            maxHeight:700, 
+            backgroundColor:"#FFFFFF",
+            borderRadius:"10px",
+            border:15, 
+            borderColor:"#FFFFFF"}}>
                     <SearchBar
                     value={searched}
                     onChange={(searchVal) => requestSearch(searchVal)}

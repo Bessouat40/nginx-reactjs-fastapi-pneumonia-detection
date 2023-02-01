@@ -10,12 +10,17 @@ const TitleComponent = () => {
   return (
     <Stack style={{height:"100vh", overflow:'hidden'
   }}>
-    <Stack style={{position:"absolute",
-      borderRadius:"10px",
-      border:'25',
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%, -50%)" }} sx={{border:15, borderColor:"#FFFFFF", backgroundColor:"#FFFFFF"}}>
+    <Stack 
+      sx={{
+        position:"absolute",  
+        borderRadius:"10px",
+        border:15, 
+        borderColor:"#FFFFFF", 
+        backgroundColor:"#FFFFFF",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)"}}
+      >
       <Stack alignItems='center' spacing={7}>
         <Stack>
           <Typography justifyContent='center'>
