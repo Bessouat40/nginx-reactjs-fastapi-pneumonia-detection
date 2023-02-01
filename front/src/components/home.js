@@ -37,11 +37,12 @@ const Home = () => {
     }, []);
 
     return (
-        <Stack style={{minHeight:"100vh", overflow:'hidden',
-        alignItems: 'center',
-        marginBottom:20
-  }}>
-    <AppBar position="relative" color="inherit" style={{width:"60%", borderRadius:"10px"}}>
+        <Stack sx={{
+                minHeight:"100vh", 
+                overflow:'hidden',
+                alignItems: 'center',
+                marginBottom:20}}>
+    <AppBar position="relative" color="inherit" sx={{width:"60%", borderRadius:"10px"}}>
         <Stack 
         justifyContent="center"
         alignItems="center" 
@@ -64,11 +65,19 @@ const Home = () => {
         }}>PneumonIA</Typography>
             </Stack>
         </AppBar>
-        <Stack spacing={5} alignItems='center' style={{marginTop:"2%", 
-    width:"90%", 
-    maxEight:"90%",
-    borderRadius:"10px"}} 
-    sx={{borderColor:"#FFFFFF", backgroundColor:"#FFFFFF"}}>
+        <Stack spacing={5} alignItems='center' 
+        // style={{
+        //     marginTop:"2%", 
+        //     width:"90%", 
+        //     maxEight:"90%",
+        //     borderRadius:"10px"}} 
+        sx={{
+            marginTop:"2%", 
+            width:"90%", 
+            maxEight:"90%",
+            borderRadius:"10px",
+            borderColor:"#FFFFFF", 
+            backgroundColor:"#FFFFFF"}}>
         
             <Stack alignItems='center' spacing={7}>
             <Typography variant="h2"
