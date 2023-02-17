@@ -1,35 +1,26 @@
 # Webapp : Pneumonia Detection
 
-## USAGE (Whithout Docker)
+This is a software to detect pneumonia from a chest X-ray.
+You can treat several patients at the same time and then you can store results in a PostGreSQL database.
+You have access to this database and you can search someone with is name.
 
-- `git clone https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection.git`
+## USAGE
 
-Go to project directory
+This software is easy to use.
+
+First clone the repo :
+
+`git clone https://github.com/Bessouat40/nginx-reactjs-fastapi-pneumonia-detection.git`
+
+Then rename env file :
 
 `cp .env.example .env`
 
-### Run frontend
+And now you can run the app :
 
-- `cd front`
+`make start`
 
-- `npm install`
-
-- `npm start`
-
-### Run backend
-
-- `cd back`
-
-- `pip install -r requirements.txt`
-
-- `python main.py`
-
-## USAGE (With Docker)
-
-- `cp .env.example .env`
-- `make start`
-
-Go to : `http://localhost:3000/`
+You can see your software running at `http://localhost:3000/`.
 
 ## Webapp
 
