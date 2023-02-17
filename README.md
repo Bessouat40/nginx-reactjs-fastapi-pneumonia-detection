@@ -4,6 +4,12 @@ This is a software to detect pneumonia from a chest X-ray.
 You can treat several patients at the same time and then you can store results in a PostGreSQL database.
 You have access to this database and you can search someone with is name.
 
+## DATABASE
+
+We use a PostGreSQL database for this app.
+There is one table storing file name and pneumonia detection result.
+We deploy this database with docker.
+
 ## USAGE
 
 This software is easy to use.
