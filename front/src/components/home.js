@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Brain from "./images/brain_.png";
+import logo from "./images/logo.png";
 import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack"
@@ -46,12 +46,13 @@ const Home = () => {
         <Stack 
         justifyContent="center"
         alignItems="center" 
-        direction='row'>
+        direction='row'
+        spacing={5}>
         <img
-            src={Brain}
+            src={logo}
             style={{
             width: 250,
-            height: 170,
+            height: 250,
             marginLeft: "1.5rem",
             position: "absolut",
             }}
