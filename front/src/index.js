@@ -2,6 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import FunctionalityChoice from './components/tab';
 import {Stack } from "@mui/material";
+import NavigationBar from "./components/navbar";
+import App from "./components/App";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,7 +17,8 @@ root.render(
     margin: 0,
     marginBottom: 2,
     padding: 0
-    }}>
-      <FunctionalityChoice />
+    }}
+    >
+      <App />
     </Stack>
 );
