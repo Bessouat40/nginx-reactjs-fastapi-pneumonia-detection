@@ -39,11 +39,11 @@ You can see your software running at `http://localhost:3000/`.
 ![pred1](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/pred1.png)
 ![pred2](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/pred2.png)
 ![pred3](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/pred3.png)
-![pred4](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/pred4.png)
 
 ### Database page
 
 ![db](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/db.png)
+![db](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/db2.png)
 
 ### About page
 
