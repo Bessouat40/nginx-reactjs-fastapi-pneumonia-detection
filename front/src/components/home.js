@@ -51,8 +51,9 @@ const Home = () => {
         <img
             src={logo}
             style={{
-            width: 250,
-            height: 250,
+
+            width: 200,
+            height: 200,
             marginLeft: "1.5rem",
             position: "absolut",
             }}
@@ -67,11 +68,6 @@ const Home = () => {
             </Stack>
         </AppBar>
         <Stack spacing={5} alignItems='center' 
-        // style={{
-        //     marginTop:"2%", 
-        //     width:"90%", 
-        //     maxEight:"90%",
-        //     borderRadius:"10px"}} 
         sx={{
             marginTop:"2%", 
             width:"90%", 
