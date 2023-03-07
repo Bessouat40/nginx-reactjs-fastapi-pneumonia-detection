@@ -51,6 +51,7 @@ const Home = () => {
         <img
             src={logo}
             style={{
+
             width: 200,
             height: 200,
             marginLeft: "1.5rem",
