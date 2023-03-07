@@ -1,8 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import FunctionalityChoice from './components/tab';
 import {Stack } from "@mui/material";
-import NavigationBar from "./components/navbar";
 import App from "./components/App";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
