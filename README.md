@@ -24,9 +24,11 @@ Then rename env file :
 
 And now you can run the app :
 
-`make start`
+* First, up database : `docker-compose build db && docker-compose up db` and wait until database is ready
 
-You can see your software running at `http://localhost:3000/`.
+* Then up entire software : `make start`
+
+You can see your PneumonIA running at `http://localhost:3000/`.
 
 ## Webapp
 

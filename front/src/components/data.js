@@ -22,13 +22,12 @@ const Data = () => {
                 method: "POST",
                 });
             const data = await resp.json();
-            console.log('coucou1')
+            console.log('data require : ', data)
             return data
             };
     
-        const createData = (filename, pred) => {
-            console.log('coucou2')
-            return {filename, pred};
+        const createData = (filename, pred, date) => {
+            return {filename, pred, date};
             };
     
         /**
@@ -38,10 +37,11 @@ const Data = () => {
             const data = await sendFetch()
             const row = [];
             data.forEach((d) => {
-                row.push(createData(d[0], d[1]))
+                console.log('d : ', d)
+                row.push(createData(d[0], d[1], d[2]))
                 })  
-            console.log(row)
             setRows(row)
+            console.log('row : ', row)
             setFilter(row)
             };
 
@@ -81,8 +81,6 @@ const Data = () => {
         <Stack sx={{height:"100vh", overflow:'hidden'}}>
         <Stack spacing={5} alignItems="center">
                 <Stack spacing={2} 
-        //         style={{maxHeight:700, backgroundColor:"#FFFFFF",
-        // borderRadius:"10px",}} 
         sx={{
             maxHeight:700, 
             backgroundColor:"#FFFFFF",
@@ -100,7 +98,8 @@ const Data = () => {
                         <TableHead>
                             <TableRow>
                                 <StyledTableCell>Filenames</StyledTableCell>
-                                <StyledTableCell align="right">Predictions</StyledTableCell>
+                                <StyledTableCell align="center">Predictions</StyledTableCell>
+                                <StyledTableCell align="right">Date</StyledTableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -112,7 +111,8 @@ const Data = () => {
                             <TableCell component="th" scope="row">
                                 {row.filename}
                             </TableCell>
-                            <TableCell align="right">{row.pred}</TableCell>
+                            <TableCell align="center">{row.pred}</TableCell>
+                            <TableCell align="right">{row.date}</TableCell>
                             </TableRow>
                         ))}
                         </TableBody>

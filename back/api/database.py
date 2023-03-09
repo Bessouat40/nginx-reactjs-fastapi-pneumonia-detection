@@ -2,6 +2,8 @@ from sqlalchemy import create_engine, insert, text, MetaData, select
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from utils import to_list
+import pandas as pd
+import datetime
 
 class Database() :
     
@@ -17,9 +19,9 @@ class Database() :
         Args:
             data (List[List]): Data to add
         """
-        query="INSERT INTO  medicaltable (nom_patient, diagnostic)  VALUES(%s,%s)"
+        query="INSERT INTO  medicaltable (nom_patient, diagnostic, date_injection)  VALUES(%s,%s, %s)"
         for d in data :
-            self.add_data.append((d[0], d[1]))
+            self.add_data.append((d[0], d[1], pd.to_datetime(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))))
         self.conn.execute(query,self.add_data)
         self.add_data = []
 
@@ -30,6 +32,8 @@ class Database() :
             data: data stored in Postgres database
         """
         data = self.conn.execute("SELECT * FROM medicaltable").fetchall()
-        final_data = to_list(data)
+        final_data = []
+        for i in range(len(data)) :
+            final_data.append([data[i][0], data[i][1], str(data[i][2])])
         return final_data
     

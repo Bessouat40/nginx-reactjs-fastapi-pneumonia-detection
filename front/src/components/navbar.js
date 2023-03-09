@@ -1,14 +1,27 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import logo from "./images/logo.png";
 
 const NavBar = () => {
   return (
     <>
-      <Navbar collapseOnSelect bg="light" expand="lg">
+      <Navbar collapseOnSelect style={{background:'white'}} expand="lg">
         <Container>
-          <Navbar.Brand as={Link} to={'/'}>PneumonIA</Navbar.Brand>
+          <Navbar.Brand as={Link} to={'/'}>
+          <img
+            src={logo}
+            style={{
+
+            width: 70,
+            height: 70,
+            position: "absolut",
+            }}
+            alt="logo"
+          />
+            PneumonIA
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           
           <Navbar.Collapse id="basic-navbar-nav">

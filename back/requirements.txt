@@ -6,3 +6,4 @@ uvicorn
 fastapi
 psycopg2-binary
 SQLAlchemy
+pandas
