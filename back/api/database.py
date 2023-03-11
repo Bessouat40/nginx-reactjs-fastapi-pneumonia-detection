@@ -21,19 +21,19 @@ class Database() :
         """
         query="INSERT INTO  medicaltable (nom_patient, diagnostic, date_injection)  VALUES(%s,%s, %s)"
         for d in data :
-            self.add_data.append((d[0], d[1], pd.to_datetime(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))))
+            self.add_data.append((d[0], d[1], pd.to_datetime(datetime.datetime.now())))
         self.conn.execute(query,self.add_data)
         self.add_data = []
 
     def require(self) :
         """Require informations to Postgres database
 
-        Returns:
+                Returns:
             data: data stored in Postgres database
         """
         data = self.conn.execute("SELECT * FROM medicaltable").fetchall()
         final_data = []
         for i in range(len(data)) :
-            final_data.append([data[i][0], data[i][1], str(data[i][2])])
+            final_data.append([data[i][0], data[i][1], str(data[i][2].strftime("%d/%m/%Y, %H:%M:%S"))])
         return final_data
     

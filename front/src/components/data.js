@@ -22,7 +22,6 @@ const Data = () => {
                 method: "POST",
                 });
             const data = await resp.json();
-            console.log('data require : ', data)
             return data
             };
     
@@ -37,11 +36,9 @@ const Data = () => {
             const data = await sendFetch()
             const row = [];
             data.forEach((d) => {
-                console.log('d : ', d)
                 row.push(createData(d[0], d[1], d[2]))
                 })  
             setRows(row)
-            console.log('row : ', row)
             setFilter(row)
             };
 
