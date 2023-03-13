@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import Button from "@mui/material/Button";
-import { Stack } from "@mui/system";
-import IconButton from "@mui/material/IconButton";
-import DeleteIcon from "@mui/icons-material/Delete";
-import Dropzone from "./subcomponents/dropzone";
-import Images from "./subcomponents/images";
-import Tables from "./subcomponents/tables";
+import React, { useState, useEffect } from 'react';
+import Button from '@mui/material/Button';
+import { Stack } from '@mui/system';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Dropzone from './subcomponents/dropzone';
+import Images from './subcomponents/images';
+import Tables from './subcomponents/tables';
 import CircularProgress from '@mui/material/CircularProgress';
 
-import FormData from "form-data";
+import FormData from 'form-data';
 
 const PredictionPage = () => {
   const [selected, setSelected] = useState();
@@ -20,8 +20,7 @@ const PredictionPage = () => {
   const [isLoading, setLoading] = useState(false);
   const [rerender, setRerender] = useState(false);
 
-  useEffect(() => {
-  }, []);
+  useEffect(() => {}, []);
 
   /**
    * Receive upload files and store them into variables
@@ -36,18 +35,21 @@ const PredictionPage = () => {
     const pastille = [];
     reception.push(files);
     for (let i = 0; i < reception[0].length; i++) {
-        radios.push({img: URL.createObjectURL(reception[0][i]), filename: reception[0][i].name.split('.').shift()})
-        listeImages.push(reception[0][i])
-        pastille.push('inherit')
+      radios.push({
+        img: URL.createObjectURL(reception[0][i]),
+        filename: reception[0][i].name.split('.').shift(),
+      });
+      listeImages.push(reception[0][i]);
+      pastille.push('inherit');
     }
-    setSelected(radios)
-    setPastilles(pastille)
+    setSelected(radios);
+    setPastilles(pastille);
     setImages(listeImages);
   };
 
   const createData = (filename, pred) => {
-    return {filename, pred};
-  }
+    return { filename, pred };
+  };
 
   /**
    * Send data to backend for diagnostic
@@ -55,43 +57,48 @@ const PredictionPage = () => {
    */
   const sendFormData = async () => {
     const formData = new FormData();
-    images.forEach((image) => formData.append("images", image));
+    images.forEach((image) => formData.append('images', image));
     const resp = await fetch('/api/prediction_multiple_pneumonia', {
       body: formData,
-      method: "POST",
+      method: 'POST',
     });
     return resp;
-  }
+  };
 
   /**
-   * 
+   *
    * @param {List} data response from the backend : images diagnostic
    */
   const storeData = (data) => {
     const row = [];
-    const csv_datas = [["Filenames", "Predictions"]];
-    let diagnostic = ''
-    const pastille = []
+    const csv_datas = [['Filenames', 'Predictions']];
+    let diagnostic = '';
+    const pastille = [];
     data.forEach((d, idx) => {
-      if (d === 1) {diagnostic = 'pneumonia'; pastille.push('error')}
-      else {diagnostic = 'normal'; pastille.push('success')}
-      row.push(createData(selected[idx]['filename'], diagnostic))
-      csv_datas.push([selected[idx]['filename'], diagnostic])
-    })  
-    return [row, csv_datas, pastille]
-  }
+      if (d === 1) {
+        diagnostic = 'pneumonia';
+        pastille.push('error');
+      } else {
+        diagnostic = 'normal';
+        pastille.push('success');
+      }
+      row.push(createData(selected[idx]['filename'], diagnostic));
+      csv_datas.push([selected[idx]['filename'], diagnostic]);
+    });
+    return [row, csv_datas, pastille];
+  };
 
   /**
    * Send data to backend for diagnostic and display/store results
    */
   const onPredict = async () => {
     if (!selected) {
-      alert("Please upload image(s) to launch prediction");
+      alert('Please upload image(s) to launch prediction');
     } else {
       setLoading(true);
       const resp = await sendFormData();
       const data = await resp.json();
-      const [row, csv_datas, pastille] = storeData(data);  
+      const [row, csv_datas, pastille] = storeData(data);
       setRows(row);
       setData(csv_datas);
       setPastilles(pastille);
@@ -101,7 +108,6 @@ const PredictionPage = () => {
     }
   };
 
-
   const onDelete = () => {
     setPredict();
     setSelected();
@@ -110,69 +116,96 @@ const PredictionPage = () => {
 
   const sendStoreData = () => {
     const formData = new FormData();
-    csvData.forEach((data) => formData.append("data", JSON.stringify(data)));
+    csvData.forEach((data) => formData.append('data', JSON.stringify(data)));
     fetch('/api/add_data', {
       body: formData,
-      method: "POST",
+      method: 'POST',
     });
-  }
+  };
 
   const onStore = () => {
     sendStoreData();
-    alert("Data succesfully stored")
-  }
+    alert('Data succesfully stored');
+  };
 
   return (
-    <Stack sx={{
-                minHeight:"100vh", overflow:'hidden',
-                alignItems: 'center',
-                marginBottom:20}}>
-    <Stack spacing={5} alignItems="center" 
-    style={{
-    maxWidth:"90%", 
-    borderRadius:"10px"}} 
-    sx={{
-      maxWidth:"90%", 
-      borderRadius:"10px",
-      border:15, 
-      borderColor:"#FFFFFF", 
-      backgroundColor:"#FFFFFF"}}>
-      <Stack spacing={30} direction="row" alignItems="center"
+    <Stack
+      sx={{
+        minHeight: '100vh',
+        overflow: 'hidden',
+        alignItems: 'center',
+        marginBottom: 20,
+      }}
+    >
+      <Stack
+        spacing={5}
+        alignItems="center"
+        style={{
+          maxWidth: '90%',
+          borderRadius: '10px',
+        }}
+        sx={{
+          maxWidth: '90%',
+          borderRadius: '10px',
+          border: 15,
+          borderColor: '#FFFFFF',
+          backgroundColor: '#FFFFFF',
+        }}
       >
-        <Stack direction="row" spacing={2}>
-          <Button variant="contained" 
-            sx={{backgroundColor:"#740d10",
-            '&:hover': {
-              backgroundColor: '#aa4656'}}} 
-            onClick={onPredict}>
-            Predict
-          </Button>
-          <IconButton aria-label="delete" onClick={onDelete} style={{color:'#740d10'}}>
-            <DeleteIcon/>
-          </IconButton>
+        <Stack spacing={30} direction="row" alignItems="center">
+          <Stack direction="row" spacing={2}>
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: '#740d10',
+                '&:hover': {
+                  backgroundColor: '#aa4656',
+                },
+              }}
+              onClick={onPredict}
+            >
+              Predict
+            </Button>
+            <IconButton
+              aria-label="delete"
+              onClick={onDelete}
+              style={{ color: '#740d10' }}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </Stack>
         </Stack>
-      </Stack>
-      {selected ? (
-        <Images selected={selected} pastilles={pastilles}/>
+        {selected ? (
+          <Images selected={selected} pastilles={pastilles} />
         ) : (
-          <Dropzone onDrop={onUpload} text={'upload your image'}/>
+          <Dropzone onDrop={onUpload} text={'upload your image'} />
         )}
-      {isLoading ? (<Stack>
-        <CircularProgress sx={{color:"#740d10"}}/>
-        </Stack>):(null)}
-      {predict ? 
-      (<Stack direction="row" spacing={2}>
-      <Button variant="contained" 
-      sx={{backgroundColor:"#740d10", 
-          height:40,
-          '&:hover': {
-          backgroundColor: '#aa4656'}}} onClick={onStore}>
-        Store Data
-      </Button>
-      <Tables rows={rows} csvData={csvData}/>
-    </Stack>)
-       : <div></div>}
-    </Stack>
+        {isLoading ? (
+          <Stack>
+            <CircularProgress sx={{ color: '#740d10' }} />
+          </Stack>
+        ) : null}
+        {predict ? (
+          <Stack direction="row" spacing={2}>
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: '#740d10',
+                height: 40,
+                '&:hover': {
+                  backgroundColor: '#aa4656',
+                },
+              }}
+              onClick={onStore}
+            >
+              Store Data
+            </Button>
+            <Tables rows={rows} csvData={csvData} />
+          </Stack>
+        ) : (
+          <div></div>
+        )}
+      </Stack>
     </Stack>
   );
 };
