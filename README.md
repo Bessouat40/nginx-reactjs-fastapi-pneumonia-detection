@@ -1,14 +1,10 @@
 # Webapp : Pneumonia Detection
 
+![home](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/home.png)
+
 This is a software to detect pneumonia from a chest X-ray.
 You can treat several patients at the same time and then you can store results in a PostGreSQL database.
 You have access to this database and you can search someone with is name.
-
-## DATABASE
-
-We use a PostGreSQL database for this app.
-There is one table storing file name and pneumonia detection result.
-We deploy this database with docker.
 
 ## USAGE
 
@@ -24,30 +20,8 @@ Then rename env file :
 
 And now you can run the app :
 
-* First, up database : `docker-compose build db && docker-compose up db` and wait until database is ready
+- First, up database : `docker-compose build db && docker-compose up db` and wait until database is ready
 
-* Then up entire software : `make start`
+- Then up entire software : `make start`
 
 You can see your PneumonIA running at `http://localhost:3000/`.
-
-## Webapp
-
-### Home page
-
-![home](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/home.png)
-
-### Pneumonia Detection page
-
-![pred1](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/pred1.png)
-![pred2](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/pred2.png)
-![pred3](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/pred3.png)
-![pred4](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/pred4.png)
-
-### Database page
-
-![db1](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/db1.png)
-![db2](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/db2.png)
-
-### About page
-
-![about](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/about.png)
