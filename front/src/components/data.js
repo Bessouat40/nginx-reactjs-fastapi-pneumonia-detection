@@ -9,11 +9,16 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import SearchBar from 'material-ui-search-bar';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
 
 const Data = () => {
   const [rows, setRows] = useState();
   const [filterRows, setFilter] = useState();
   const [searched, setSearched] = useState('');
+  const [filterDiagnostic, setFilterDiagnostic] = useState('');
 
   useEffect(() => {
     const sendFetch = async () => {
@@ -24,8 +29,8 @@ const Data = () => {
       return data;
     };
 
-    const createData = (filename, pred, date) => {
-      return { filename, pred, date };
+    const createData = (filename, pred, date, doctor) => {
+      return { filename, pred, date, doctor };
     };
 
     /**
@@ -35,7 +40,7 @@ const Data = () => {
       const data = await sendFetch();
       const row = [];
       data.forEach((d) => {
-        row.push(createData(d[0], d[1], d[2]));
+        row.push(createData(d[0], d[1], d[2], d[3]));
       });
       setRows(row);
       setFilter(row);
@@ -56,11 +61,29 @@ const Data = () => {
 
   /**
    *
-   * @param {*} searchedVal patient name we want to filter on
+   * @param {*} searchedVal doctor name we want to filter on
    */
-  const requestSearch = (searchedVal) => {
+  const requestSearchFilename = (searchedVal) => {
     const filteredRows = rows.filter((row) => {
       return row.filename.toLowerCase().includes(searchedVal.toLowerCase());
+    });
+    setFilter(filteredRows);
+  };
+
+  const requestSearchDoctor = (searchedVal) => {
+    const filteredRows = rows.filter((row) => {
+      console.log('doctor : ', row);
+      return row.doctor.toLowerCase().includes(searchedVal.toLowerCase());
+    });
+    setFilter(filteredRows);
+  };
+
+  const requestSearchDiagnostic = (searchedVal) => {
+    setFilterDiagnostic(searchedVal.target.value);
+    const filteredRows = rows.filter((row) => {
+      return row.pred
+        .toLowerCase()
+        .includes(searchedVal.target.value.toLowerCase());
     });
     setFilter(filteredRows);
   };
@@ -68,9 +91,17 @@ const Data = () => {
   /**
    * Reset display
    */
-  const cancelSearch = () => {
+  const cancelSearchFilename = () => {
     setSearched('');
-    requestSearch(searched);
+    requestSearchFilename(searched);
+  };
+
+  /**
+   * Reset display
+   */
+  const cancelSearchDoctor = () => {
+    setSearched('');
+    requestSearchDoctor(searched);
   };
 
   return (
@@ -86,22 +117,43 @@ const Data = () => {
             borderColor: '#FFFFFF',
           }}
         >
-          <SearchBar
-            value={searched}
-            onChange={(searchVal) => requestSearch(searchVal)}
-            onCancelSearch={() => cancelSearch()}
-            placeholder="Filter on a patient name"
-          />
+          <Stack direction="row" spacing={5}>
+            <SearchBar
+              value={searched}
+              onChange={(searchVal) => requestSearchFilename(searchVal)}
+              onCancelSearch={() => cancelSearchFilename()}
+              placeholder="Filter on a patient name"
+            />
+            <SearchBar
+              value={searched}
+              onChange={(searchVal) => requestSearchDoctor(searchVal)}
+              onCancelSearch={() => cancelSearchDoctor()}
+              placeholder="Filter on a doctor name"
+            />
+            <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="select-diagnostic">Diagnostic</InputLabel>
+              <Select
+                value={filterDiagnostic}
+                label="Diagnostic"
+                onChange={requestSearchDiagnostic}
+              >
+                <MenuItem value={''}>None</MenuItem>
+                <MenuItem value={'pneumonia'}>Pneumonia</MenuItem>
+                <MenuItem value={'normal'}>Normal</MenuItem>
+              </Select>
+            </FormControl>
+          </Stack>
           {filterRows ? (
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 1200 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell>Filenames</StyledTableCell>
+                    <StyledTableCell align="center">Filenames</StyledTableCell>
                     <StyledTableCell align="center">
                       Predictions
                     </StyledTableCell>
-                    <StyledTableCell align="right">Date</StyledTableCell>
+                    <StyledTableCell align="center">Date</StyledTableCell>
+                    <StyledTableCell align="center">Doctor</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -110,11 +162,12 @@ const Data = () => {
                       key={idx}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                      <TableCell component="th" scope="row">
+                      <TableCell align="center" component="th" scope="row">
                         {row.filename}
                       </TableCell>
                       <TableCell align="center">{row.pred}</TableCell>
-                      <TableCell align="right">{row.date}</TableCell>
+                      <TableCell align="center">{row.date}</TableCell>
+                      <TableCell align="center">{row.doctor}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

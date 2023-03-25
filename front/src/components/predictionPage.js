@@ -7,8 +7,13 @@ import Dropzone from './subcomponents/dropzone';
 import Images from './subcomponents/images';
 import Tables from './subcomponents/tables';
 import CircularProgress from '@mui/material/CircularProgress';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
 
 import FormData from 'form-data';
+import { TextField } from '@mui/material';
 
 const PredictionPage = () => {
   const [selected, setSelected] = useState();
@@ -19,6 +24,8 @@ const PredictionPage = () => {
   const [pastilles, setPastilles] = useState();
   const [isLoading, setLoading] = useState(false);
   const [rerender, setRerender] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [doctor, setDoctor] = useState('');
 
   useEffect(() => {}, []);
 
@@ -45,6 +52,14 @@ const PredictionPage = () => {
     setSelected(radios);
     setPastilles(pastille);
     setImages(listeImages);
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   const createData = (filename, pred) => {
@@ -116,7 +131,11 @@ const PredictionPage = () => {
 
   const sendStoreData = () => {
     const formData = new FormData();
-    csvData.forEach((data) => formData.append('data', JSON.stringify(data)));
+    csvData.forEach((data) => {
+      data.push(doctor);
+      console.log(data);
+      formData.append('data', JSON.stringify(data));
+    });
     fetch('/api/add_data', {
       body: formData,
       method: 'POST',
@@ -125,6 +144,7 @@ const PredictionPage = () => {
 
   const onStore = () => {
     sendStoreData();
+    setOpen(false);
     alert('Data succesfully stored');
   };
 
@@ -196,10 +216,29 @@ const PredictionPage = () => {
                   backgroundColor: '#aa4656',
                 },
               }}
-              onClick={onStore}
+              onClick={handleClickOpen}
             >
               Store Data
             </Button>
+            <Dialog
+              open={open}
+              keepMounted
+              onClose={handleClose}
+              aria-describedby="alert-dialog-slide-description"
+            >
+              <DialogTitle>{'Who are you ?'}</DialogTitle>
+              <DialogContent>
+                <TextField
+                  label="Doctor Name"
+                  onChange={(e) => {
+                    setDoctor(e.target.value);
+                  }}
+                />
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={onStore}>Validate</Button>
+              </DialogActions>
+            </Dialog>
             <Tables rows={rows} csvData={csvData} />
           </Stack>
         ) : (

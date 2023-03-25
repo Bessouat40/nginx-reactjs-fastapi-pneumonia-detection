@@ -31,5 +31,5 @@ def split_data(datas) :
 def to_list(datas) :
     final_list = []
     for data in datas :
-        final_list.append([data[0], data[1]])
+        final_list.append([data[0], data[1], data[2]])
     return final_list
