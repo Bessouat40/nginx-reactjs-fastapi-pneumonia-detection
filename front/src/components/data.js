@@ -13,10 +13,13 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
+import { Typography } from '@mui/material';
 
 const Data = () => {
   const [rows, setRows] = useState();
   const [filterRows, setFilter] = useState();
+  const [lengthRows, setLength] = useState();
+  const [lengthFilter, setLengthFilter] = useState();
   const [searched, setSearched] = useState('');
   const [filterDiagnostic, setFilterDiagnostic] = useState('');
 
@@ -44,6 +47,8 @@ const Data = () => {
       });
       setRows(row);
       setFilter(row);
+      setLength(row.length);
+      setLengthFilter(row.length);
     };
 
     getData();
@@ -67,6 +72,7 @@ const Data = () => {
     const filteredRows = rows.filter((row) => {
       return row.filename.toLowerCase().includes(searchedVal.toLowerCase());
     });
+    setLengthFilter(filteredRows.length);
     setFilter(filteredRows);
   };
 
@@ -75,6 +81,7 @@ const Data = () => {
       console.log('doctor : ', row);
       return row.doctor.toLowerCase().includes(searchedVal.toLowerCase());
     });
+    setLengthFilter(filteredRows.length);
     setFilter(filteredRows);
   };
 
@@ -85,6 +92,7 @@ const Data = () => {
         .toLowerCase()
         .includes(searchedVal.target.value.toLowerCase());
     });
+    setLengthFilter(filteredRows.length);
     setFilter(filteredRows);
   };
 
@@ -94,6 +102,7 @@ const Data = () => {
   const cancelSearchFilename = () => {
     setSearched('');
     requestSearchFilename(searched);
+    setLengthFilter(rows.length);
   };
 
   /**
@@ -101,6 +110,7 @@ const Data = () => {
    */
   const cancelSearchDoctor = () => {
     setSearched('');
+    setLengthFilter(rows.length);
     requestSearchDoctor(searched);
   };
 
@@ -143,6 +153,8 @@ const Data = () => {
               </Select>
             </FormControl>
           </Stack>
+          <Typography>{lengthRows} data in the database</Typography>
+          <Typography>{lengthFilter} results for your filter</Typography>
           {filterRows ? (
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 1200 }} aria-label="simple table">
