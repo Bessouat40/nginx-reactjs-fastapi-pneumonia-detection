@@ -5,6 +5,7 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import CircleIcon from '@mui/icons-material/Circle';
+import { Typography } from '@mui/material';
 
 const Images = (props) => {
   useEffect(() => {}, []);
@@ -16,6 +17,7 @@ const Images = (props) => {
         backgroundColor: '#FFFFFF',
         borderRadius: '10px',
       }}
+      spacing={5}
       sx={{ border: 15, borderColor: '#FFFFFF' }}
     >
       <ImageList cols={5}>
@@ -37,6 +39,16 @@ const Images = (props) => {
           </ImageListItem>
         ))}
       </ImageList>
+      <Stack direction="row" spacing={5}>
+        <Stack direction="row">
+          <CircleIcon color="success" />
+          <Typography> : normal</Typography>
+        </Stack>
+        <Stack direction="row">
+          <CircleIcon color="error" />
+          <Typography> : pneumonia</Typography>
+        </Stack>
+      </Stack>
     </Stack>
   );
 };
