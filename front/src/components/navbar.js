@@ -13,8 +13,8 @@ const NavBar = () => {
             <img
               src={logo}
               style={{
-                width: 70,
-                height: 70,
+                width: 45,
+                height: 45,
                 position: 'absolut',
               }}
               alt="logo"
