@@ -1,8 +1,9 @@
-FROM ubuntu:bionic
+FROM ubuntu:20.04
 
 RUN apt-get update
 RUN apt-get install curl -y
-RUN apt-get install python3 python3-pip -y
+RUN apt-get install python3.8 -y
+RUN apt-get install python3-pip -y
 RUN pip3 install --upgrade pip
 
 WORKDIR /app

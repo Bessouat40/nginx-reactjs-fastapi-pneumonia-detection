@@ -1,5 +1,4 @@
-import joblib
-import numpy as np
+from transformers import pipeline
 from PIL import Image
 from io import BytesIO
 
@@ -8,7 +7,9 @@ class Inference():
 
     def __init__(self):
 
-        self.model = joblib.load('./models/random_forest_150x150x1.joblib')
+        model_name = 'BobCalifornia/v1-vit-pneumonia'
+        self.model = pipeline(model=model_name, tokenizer=model_name)
+        self.images = None
 
     def load_single_image(self, bytes):
         """Load single image with associated bytes
@@ -20,11 +21,7 @@ class Inference():
             img: numpy list corresponding to the loaded image 
         """
         image = BytesIO(bytes)
-        pil_image = Image.open(image).convert('L') 
-        img = np.array(pil_image)
-        img_shape = (150,150,1)
-        img_width, img_height, nb_canaux = img_shape[0], img_shape[1], img_shape[2]
-        img = np.array([np.resize(img,(img_width, img_height))])
+        img = Image.open(image).convert("RGB")
         return img
 
     def load_multiple_img(self, bytes) :
@@ -34,13 +31,16 @@ class Inference():
             bytes (List[List]): list of bytes corresponding to multiple images
         """
         liste = []
-        for i in bytes :
-            img = self.load_single_image(i)
+        for byte in bytes :
+            img = self.load_single_image(byte)
             liste.append(img)
-        x = np.asarray(liste)
-        x = np.array(np.concatenate(x))
-        x = x.reshape(len(bytes),150*150)
-        self.image = x
+        self.images = liste
 
     def predict_image(self):
-        return self.model.predict(self.image)
+        outputs = self.model(self.images)
+        predictions = []
+        for output in outputs :
+            if output[0]['score'] > output[1]['score'] :
+                predictions.append('0')
+            else : predictions.append('1')
+        return predictions

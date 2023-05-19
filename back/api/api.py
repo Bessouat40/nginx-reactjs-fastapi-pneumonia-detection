@@ -29,6 +29,7 @@ async def detect_pneumonia(images: List[UploadFile]=File(...)):
     Returns:
         pred: List corresponding to images diagnostic (0 : no pneumonia, 1 : pneumonia)
     """
+    print('coucou')
     images_bytes = []
     for image in images :
         images_bytes.append(image.file.read())
