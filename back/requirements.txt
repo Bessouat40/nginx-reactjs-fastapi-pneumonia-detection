@@ -1,9 +1,11 @@
 numpy
-pillow
+pillow==9.3.0
 joblib
 python-multipart
 uvicorn
 fastapi
 psycopg2-binary
-SQLAlchemy
+SQLAlchemy==1.4.35
 pandas
+torch==2.0.0
+transformers==4.28.1
