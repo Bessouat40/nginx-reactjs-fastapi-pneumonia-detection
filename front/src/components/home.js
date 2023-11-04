@@ -69,7 +69,7 @@ const Home = () => {
             style={{
               background:
                 'linear-gradient(39deg, rgba(210,191,195,1) 0%, rgba(170,70,86,1) 50%, rgba(116,13,16,1) 100%)',
-              webkitBackgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               fontFamily: 'skia',
             }}
@@ -96,7 +96,7 @@ const Home = () => {
             style={{
               background:
                 'linear-gradient(39deg, rgba(210,191,195,1) 0%, rgba(170,70,86,1) 50%, rgba(116,13,16,1) 100%)',
-              webkitBackgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               fontFamily: 'skia',
             }}

@@ -34,11 +34,6 @@ const App = () => {
     });
 
     setKeycloakInstance(_keycloakInstance);
-    return () => {
-      if (keycloakInstance) {
-        keycloakInstance.logout();
-      }
-    };
   }, []);
   return (
     <Router>
