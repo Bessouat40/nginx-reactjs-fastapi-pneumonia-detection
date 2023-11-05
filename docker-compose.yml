@@ -21,7 +21,7 @@ services:
       - backend
       - frontend
     ports:
-      - '3000:80'
+      - '80:80'
 
   frontend:
     platform: linux/amd64
