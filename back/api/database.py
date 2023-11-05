@@ -11,7 +11,8 @@ class Database() :
 
         self.engine = create_engine("postgresql+psycopg2://postgres:postgres@db:5432/medicalDB")
         self.conn = self.engine.connect()
-        self.meta_data = MetaData(bind=self.conn)
+        self.meta_data = MetaData()
+        self.meta_data.reflect(bind=self.engine)
         self.add_data = []
 
     def add(self, data) :
@@ -19,7 +20,7 @@ class Database() :
         Args:
             data (List[List]): Data to add
         """
-        query="INSERT INTO  medicaltable (nom_patient, diagnostic, date_injection, doctor)  VALUES(%s,%s, %s, %s)"
+        query=text("INSERT INTO  medicaltable (nom_patient, diagnostic, date_injection, doctor)  VALUES(%s,%s, %s, %s)")
         for d in data :
             self.add_data.append((d[0], d[1], pd.to_datetime(datetime.datetime.now()), d[2]))
         self.conn.execute(query,self.add_data)
@@ -31,7 +32,8 @@ class Database() :
                 Returns:
             data: data stored in Postgres database
         """
-        data = self.conn.execute("SELECT * FROM medicaltable").fetchall()
+        query = text("SELECT * FROM medicaltable")
+        data = self.conn.execute(query).fetchall()
         final_data = []
         for i in range(len(data)) :
             final_data.append([data[i][0], data[i][1], str(data[i][2].strftime("%d/%m/%Y, %H:%M:%S")), data[i][3]])
