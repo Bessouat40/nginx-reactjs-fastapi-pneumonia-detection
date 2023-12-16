@@ -1,19 +1,18 @@
-version: "3"
+version: '3'
 services:
-
   db:
-      image: postgres
-      restart: unless-stopped
-      container_name: db
-      environment:
-        - POSTGRES_USER=postgres
-        - POSTGRES_PASSWORD=postgres
-        - POSTGRES_DB=medicalDB
-      ports:
-        - '5432:5432'
-      volumes: 
-        - ./db:/var/lib/postgresql/data
-        - ./init.sql:/docker-entrypoint-initdb.d/create_tables.sql
+    image: postgres
+    restart: unless-stopped
+    container_name: db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=medicalDB
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./db:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/create_tables.sql
 
   nginx:
     restart: unless-stopped
@@ -24,19 +23,19 @@ services:
       - backend
       - frontend
     ports:
-    - "3000:80"
+      - '80:80'
 
   frontend:
     platform: linux/amd64
     restart: unless-stopped
-    build: 
+    build:
       context: ./front
       dockerfile: ./Dockerfile
 
-  backend :
+  backend:
     platform: linux/amd64
     restart: unless-stopped
-    build: 
+    mem_limit: 4g
+    build:
       context: ./back
       dockerfile: ./Dockerfile
-    
