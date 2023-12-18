@@ -7,6 +7,7 @@ from PIL import Image
 
 class Inference():
 
+
     def __init__(self, ort_sess, input_name, output_name):
         # self.ort_sess = onnxruntime.InferenceSession("./models/vit_model.onnx", providers=['CPUExecutionProvider'])
         # self.input_name = self.ort_sess.get_inputs()[0].name
@@ -15,6 +16,7 @@ class Inference():
         self.ort_sess = ort_sess
         self.input_name = input_name
         self.output_name = output_name
+
 
     def load_single_image(self, bytes):
         """Load single image with associated bytes
@@ -26,11 +28,7 @@ class Inference():
             img: numpy list corresponding to the loaded image 
         """
         image = BytesIO(bytes)
-        pil_image = Image.open(image).convert('L') 
-        img = np.array(pil_image)
-        img_shape = (150,150,1)
-        img_width, img_height, nb_canaux = img_shape[0], img_shape[1], img_shape[2]
-        img = np.array([np.resize(img,(img_width, img_height))])
+        img = Image.open(image).convert("RGB")
         return img
 
     def load_multiple_img(self, bytes) :
@@ -40,13 +38,10 @@ class Inference():
             bytes (List[List]): list of bytes corresponding to multiple images
         """
         liste = []
-        for i in bytes :
-            img = self.load_single_image(i)
+        for byte in bytes :
+            img = self.load_single_image(byte)
             liste.append(img)
-        x = np.asarray(liste)
-        x = np.array(np.concatenate(x))
-        x = x.reshape(len(bytes),150*150)
-        self.image = x
+        self.images = liste
 
     def predict_image(self):
         return self.model.predict(self.image)
@@ -67,3 +62,4 @@ class Inference():
         probabilities = np.exp(logits) / np.sum(np.exp(logits), axis=1, keepdims=True)
         predicted_classes = np.argmax(probabilities, axis=1)
         return predicted_classes
+

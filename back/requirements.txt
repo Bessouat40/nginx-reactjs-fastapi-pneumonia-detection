@@ -1,5 +1,5 @@
 numpy
-pillow
+pillow==9.3.0
 joblib
 python-multipart
 uvicorn
@@ -8,3 +8,4 @@ psycopg2-binary
 SQLAlchemy
 pandas
 onnxruntime
+
