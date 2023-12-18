@@ -1,6 +1,6 @@
 # Webapp : Pneumonia Detection
 
-![home](https://github.com/Bessouat40/reactjs-fastapi-pneumonia-detection/blob/main/screen/home.png)
+![home](./screen/ihm.png)
 
 This is a software to detect pneumonia from a chest X-ray.
 You can treat several patients at the same time and then you can store results in a PostGreSQL database.

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import logo from './images/logo.png';
 import AppBar from '@mui/material/AppBar';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
@@ -46,7 +45,11 @@ const Home = () => {
       <AppBar
         position="relative"
         color="inherit"
-        sx={{ width: '60%', borderRadius: '10px' }}
+        sx={{
+          width: '60%',
+          borderRadius: '10px',
+          backgroundColor: 'rgb(249,249,249,0.8)',
+        }}
       >
         <Stack
           justifyContent="center"
@@ -54,21 +57,10 @@ const Home = () => {
           direction="row"
           spacing={5}
         >
-          <img
-            src={logo}
-            style={{
-              width: 200,
-              height: 200,
-              marginLeft: '1.5rem',
-              position: 'absolut',
-            }}
-            alt="logo"
-          />
           <Typography
             variant="h1"
             style={{
-              background:
-                'linear-gradient(39deg, rgba(210,191,195,1) 0%, rgba(170,70,86,1) 50%, rgba(116,13,16,1) 100%)',
+              background: 'black',
               webkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               fontFamily: 'skia',
@@ -84,18 +76,17 @@ const Home = () => {
         sx={{
           marginTop: '2%',
           width: '90%',
-          maxEight: '90%',
+          maxHeight: '90%',
           borderRadius: '10px',
-          borderColor: '#FFFFFF',
-          backgroundColor: '#FFFFFF',
+          borderColor: 'rgb(249,249,249,0.8)',
+          backgroundColor: 'rgb(249,249,249,0.8)',
         }}
       >
         <Stack alignItems="center" spacing={7}>
           <Typography
             variant="h2"
             style={{
-              background:
-                'linear-gradient(39deg, rgba(210,191,195,1) 0%, rgba(170,70,86,1) 50%, rgba(116,13,16,1) 100%)',
+              background: 'black',
               webkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               fontFamily: 'skia',

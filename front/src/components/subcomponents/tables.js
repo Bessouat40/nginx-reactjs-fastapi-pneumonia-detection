@@ -31,10 +31,11 @@ const Tables = (props) => {
       spacing={2}
       style={{
         maxHeight: 450,
-        backgroundColor: '#FFFFFF',
-        borderRadius: '10px',
+        paddingBottom: '10px',
+        paddingTop: '10px',
+        paddingLeft: '10px',
+        paddingRight: '10px',
       }}
-      sx={{ border: 15, borderColor: '#FFFFFF' }}
     >
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">

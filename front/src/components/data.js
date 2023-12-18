@@ -119,15 +119,21 @@ const Data = () => {
       <Stack spacing={5} alignItems="center">
         <Stack
           spacing={2}
+          alignItems="center"
           sx={{
             maxHeight: 700,
-            backgroundColor: '#FFFFFF',
+            marginBottom: '10px',
+            paddingTop: '10px',
+            paddingLeft: '10px',
+            paddingRight: '10px',
             borderRadius: '10px',
-            border: 15,
-            borderColor: '#FFFFFF',
+            width: '90%',
+            maxWidth: '1200px',
+            borderColor: 'rgb(249,249,249,0.8)',
+            backgroundColor: 'rgb(249,249,249,0.8)',
           }}
         >
-          <Stack direction="row" spacing={5}>
+          <Stack direction="row" spacing={5} justifyContent="center">
             <SearchBar
               value={searched}
               onChange={(searchVal) => requestSearchFilename(searchVal)}
@@ -140,7 +146,10 @@ const Data = () => {
               onCancelSearch={() => cancelSearchDoctor()}
               placeholder="Filter on a doctor name"
             />
-            <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+            <FormControl
+              variant="standard"
+              sx={{ minWidth: 120, backgroundColor: 'white' }}
+            >
               <InputLabel id="select-diagnostic">Diagnostic</InputLabel>
               <Select
                 value={filterDiagnostic}
@@ -172,7 +181,9 @@ const Data = () => {
                   {filterRows.map((row, idx) => (
                     <TableRow
                       key={idx}
-                      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                      sx={{
+                        '&:last-child td, &:last-child th': { border: 0 },
+                      }}
                     >
                       <TableCell align="center" component="th" scope="row">
                         {row.filename}
@@ -188,6 +199,7 @@ const Data = () => {
           ) : (
             <div></div>
           )}
+          <br />
         </Stack>
       </Stack>
     </Stack>

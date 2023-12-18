@@ -14,11 +14,9 @@ const Images = (props) => {
     <Stack
       style={{
         maxHeight: 450,
-        backgroundColor: '#FFFFFF',
         borderRadius: '10px',
       }}
       spacing={5}
-      sx={{ border: 15, borderColor: '#FFFFFF' }}
     >
       <ImageList cols={5}>
         {(props.selected || []).map((url, idx) => (
