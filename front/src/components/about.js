@@ -11,11 +11,14 @@ const TitleComponent = () => {
     <Stack style={{ height: '100vh', overflow: 'hidden' }}>
       <Stack
         sx={{
+          paddingBottom: '10px',
+          paddingTop: '10px',
+          paddingLeft: '10px',
+          paddingRight: '10px',
           position: 'absolute',
           borderRadius: '10px',
-          border: 15,
-          borderColor: '#FFFFFF',
-          backgroundColor: '#FFFFFF',
+          borderColor: 'rgb(249,249,249,0.8)',
+          backgroundColor: 'rgb(249,249,249,0.8)',
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',

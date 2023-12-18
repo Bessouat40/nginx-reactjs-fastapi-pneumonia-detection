@@ -5,7 +5,7 @@ python-multipart
 uvicorn
 fastapi
 psycopg2-binary
-SQLAlchemy==1.4.35
+SQLAlchemy
 pandas
-torch==2.0.0
-transformers==4.28.1
+onnxruntime
+

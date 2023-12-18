@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import { Stack } from '@mui/system';
+import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Dropzone from './subcomponents/dropzone';
@@ -148,6 +149,10 @@ const PredictionPage = () => {
     alert('Data succesfully stored');
   };
 
+  const onClose = () => {
+    setOpen(false);
+  };
+
   return (
     <Stack
       sx={{
@@ -160,16 +165,16 @@ const PredictionPage = () => {
       <Stack
         spacing={5}
         alignItems="center"
-        style={{
-          maxWidth: '90%',
-          borderRadius: '10px',
-        }}
         sx={{
+          alignItems: 'center',
+          paddingBottom: '10px',
+          paddingTop: '10px',
+          paddingLeft: '10px',
+          paddingRight: '10px',
           maxWidth: '90%',
           borderRadius: '10px',
-          border: 15,
-          borderColor: '#FFFFFF',
-          backgroundColor: '#FFFFFF',
+          borderColor: 'rgb(249,249,249,0.8)',
+          backgroundColor: 'rgb(249,249,249,0.8)',
         }}
       >
         <Stack spacing={30} direction="row" alignItems="center">
@@ -226,7 +231,19 @@ const PredictionPage = () => {
               onClose={handleClose}
               aria-describedby="alert-dialog-slide-description"
             >
-              <DialogTitle>{'Who are you ?'}</DialogTitle>
+              <DialogTitle>
+                <Stack
+                  direction="row"
+                  spacing={10}
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  {'Who are you ?'}
+                  <IconButton onClick={onClose}>
+                    <CloseIcon />
+                  </IconButton>
+                </Stack>
+              </DialogTitle>
               <DialogContent>
                 <TextField
                   label="Doctor Name"

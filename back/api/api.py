@@ -7,8 +7,15 @@ import numpy as np
 from fastapi.middleware.cors import CORSMiddleware
 from database import Database
 from utils import recognize_data, split_data
+from onnxruntime import InferenceSession
 
-inf = Inference()
+print('setup start...')
+ort_sess = InferenceSession("./models/vit_model.onnx", providers=['CPUExecutionProvider'])
+input_name = ort_sess.get_inputs()[0].name
+output_name = ort_sess.get_outputs()[0].name
+
+inf = Inference(ort_sess=ort_sess, input_name=input_name, output_name=output_name)
+print('setup ok')
 db = Database()
 
 app = FastAPI()
@@ -35,6 +42,20 @@ async def detect_pneumonia(images: List[UploadFile]=File(...)):
         images_bytes.append(image.file.read())
     inf.load_multiple_img(images_bytes)
     pred = list(inf.predict_image())
+    return pred
+
+@app.post('/prediction_multiple_pneumoniaa', response_model=List[int])
+async def detect_pneumonia(images: List[UploadFile]=File(...)):
+    """Pneumonia detection on single or multiple images
+    Args:
+        images (List[UploadFile], optional): List of images as bytes
+    Returns:
+        pred: List corresponding to images diagnostic (0 : no pneumonia, 1 : pneumonia)
+    """
+    images_bytes = []
+    for image in images :
+        images_bytes.append(image.file.read())
+    pred = list(inf.onnx_inferences(images_bytes))
     return pred
 
 @app.post('/add_data')
