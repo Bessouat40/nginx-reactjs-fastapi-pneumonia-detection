@@ -9,7 +9,7 @@ const Home = () => {
 
   useEffect(() => {
     const sendFetchData = async () => {
-      const resp = await fetch('/api/require', {
+      const resp = await fetch('http://localhost:8000/require', {
         method: 'POST',
       });
       const data = await resp.json();

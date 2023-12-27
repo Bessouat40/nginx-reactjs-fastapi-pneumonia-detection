@@ -9,7 +9,7 @@ class Database() :
     
     def __init__(self):
 
-        self.engine = create_engine("postgresql+psycopg2://postgres:postgres@db:5432/medicalDB")
+        self.engine = create_engine("postgresql+psycopg2://postgres:postgres@localhost:5432/medicalDB")
         self.conn = self.engine.connect()
         self.meta_data = MetaData(bind=self.conn)
         self.add_data = []

@@ -7,5 +7,6 @@ fastapi
 psycopg2-binary
 SQLAlchemy
 pandas
-onnxruntime
-
+typing-extensions==4.1.0
+scipy
+matplotlib
