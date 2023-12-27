@@ -74,10 +74,13 @@ const PredictionPage = () => {
   const sendFormData = async () => {
     const formData = new FormData();
     images.forEach((image) => formData.append('images', image));
-    const resp = await fetch('/api/prediction_multiple_pneumonia', {
-      body: formData,
-      method: 'POST',
-    });
+    const resp = await fetch(
+      'http://localhost:8000/prediction_multiple_pneumonia',
+      {
+        body: formData,
+        method: 'POST',
+      }
+    );
     return resp;
   };
 
@@ -137,7 +140,7 @@ const PredictionPage = () => {
       console.log(data);
       formData.append('data', JSON.stringify(data));
     });
-    fetch('/api/add_data', {
+    fetch('http://localhost:8000/add_data', {
       body: formData,
       method: 'POST',
     });
@@ -147,10 +150,6 @@ const PredictionPage = () => {
     sendStoreData();
     setOpen(false);
     alert('Data succesfully stored');
-  };
-
-  const onClose = () => {
-    setOpen(false);
   };
 
   return (
@@ -201,7 +200,7 @@ const PredictionPage = () => {
           </Stack>
         </Stack>
         {selected ? (
-          <Images selected={selected} pastilles={pastilles} />
+          <Images selected={selected} pastilles={pastilles} images={images} />
         ) : (
           <Dropzone onDrop={onUpload} text={'upload your image'} />
         )}
@@ -239,7 +238,7 @@ const PredictionPage = () => {
                   justifyContent="center"
                 >
                   {'Who are you ?'}
-                  <IconButton onClick={onClose}>
+                  <IconButton onClick={handleClose}>
                     <CloseIcon />
                   </IconButton>
                 </Stack>
