@@ -1,5 +1,5 @@
 numpy
-pillow
+pillow==9.3.0
 joblib
 python-multipart
 uvicorn
@@ -7,4 +7,6 @@ fastapi
 psycopg2-binary
 SQLAlchemy
 pandas
-onnxruntime
+typing-extensions==4.1.0
+scipy
+matplotlib
