@@ -25,3 +25,7 @@ And now you can run the app :
 - Then up entire software : `make start`
 
 You can see your PneumonIA running at `http://localhost:3000/`.
+
+## AI Model and AI Explanability
+
+It's a fine tunned VGG16 model.
