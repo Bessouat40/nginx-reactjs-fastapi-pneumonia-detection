@@ -29,3 +29,4 @@ You can see your PneumonIA running at `http://localhost:3000/`.
 ## AI Model
 
 It's a fine tunned VGG16.
+https://github.com/Bessouat40/unsupervised-image-anomaly-detection
