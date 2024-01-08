@@ -26,6 +26,7 @@ And now you can run the app :
 
 You can see your PneumonIA running at `http://localhost:3000/`.
 
-## AI Model and AI Explanability
+## AI Model
 
-It's a fine tunned VGG16 model.
+It's a fine tunned VGG16.
+https://github.com/Bessouat40/unsupervised-image-anomaly-detection
