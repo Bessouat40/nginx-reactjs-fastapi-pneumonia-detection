@@ -1,6 +1,6 @@
 # Webapp : Pneumonia Detection
 
-![home](./screen/ihm.png)
+![home](./medias/demo_app.gif)
 
 This is a software to detect pneumonia from a chest X-ray.
 You can treat several patients at the same time and then you can store results in a PostGreSQL database.
